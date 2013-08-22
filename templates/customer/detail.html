@@ -1,0 +1,67 @@
+{% extends "rebase.html"%}
+{% block nav %}
+  <div class="row">
+    <h3 class="muted logo">帮我论文.com</h3>
+    <ul class="nav nav-tabs">
+      <li>
+        <a href="{% url "require.views.customerRequirmentList" %}">个人中心</a>
+      </li>
+      <li class="active"><a href="{% url "require.views.customerRequirementMarket" %}">论文市场</a></li>
+      <li><a href="{% url "require.views.newRequirement" %}"><i class="icon-plus-sign"></i>发布需求</a></li>
+      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+    </ul>
+  </div>
+{% endblock%}
+{% block content %}
+    <div class="row">
+    
+    <div class="span8">
+    <ul class="breadcrumb">
+      <li><a href="{% url "require.views.customerRequirementMarket" %}">论文市场</a> <span class="divider">/</span></li>
+      <li class="active">需求详情</li>
+    </ul>
+    <div class="well">
+    <p>悬赏金额:{{requirement.prize}}</p>
+    <p>发布日期:{{requirement.createdtime}}</p>
+    <p>影响因子要求:{{requirement.scifactor}}</p>
+    {% autoescape off %}
+    <div><p>其他要求:{{requirement.description}}</p></div>
+    {% endautoescape %}
+    </div>
+    {% if bidlist %}
+    
+    <div>
+      
+    <table class="table table-hover table-bordered">
+ <thead>
+ <tr>
+  <td>投标人姓名</td>
+  <td>查看投标人详细信息</td>
+  <td>选择中标</td>
+ </tr>
+ </thead>
+ <tbody>
+  {% for bid in bidlist %}
+  <tr>
+     <td>{{ bid.username }}</td>
+    <td><a href="{% url "writer.views.writerprofile" bid.pk %}"><button class="btn btn-info">点击查看资料</button></a></td>
+    <td>
+      <form method="POST" action="{% url "transaction.views.submitBid" %}">
+        {% csrf_token %}
+    <input style="display:none" name="requirement" value="{{requirement.pk}}"/>
+    <button class="btn btn-primary" name="biduser" type="submit" value="{{bid.pk}}">选择中标并支付
+    </button>
+     </form>
+  </td>
+  </tr>
+  {% endfor %}
+ </tbody>
+ </table>
+
+    </div>
+    {% endif %}
+	<div class="span4">
+	</div>
+	</div>
+	</div>
+{% endblock %}

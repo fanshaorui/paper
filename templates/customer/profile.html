@@ -1,0 +1,57 @@
+{% extends "rebase.html" %}
+{% block nav %}
+  <div class="row">
+    <h3 class="muted logo">帮我论文.com</h3>
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="{% url "require.views.customerRequirmentList" %}">个人中心</a>
+      </li>
+      <li><a href="{% url "require.views.customerRequirementMarket" %}">论文市场</a></li>
+      <li><a href="{% url "require.views.newRequirement" %}"><i class="icon-plus-sign"></i>发布需求</a></li>
+      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+    </ul>
+  </div>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="span4">
+    <div class="well" id="nav-left">
+<ul class="nav nav-list">
+  <li class="nav-header">用户中心</li>
+  <li><a href="{% url "require.views.customerRequirmentList" %}">我的需求</a></li>
+  <li><a href="{% url "transaction.views.customerTransactionList" %}">我的交易</a></li>
+  <li class="active"><a href="{% url "customer.views.profilePage" %}">个人信息</a></li>
+</ul>
+</div>
+</div>
+<div class="span8">
+<form class="form-horizontal" action="{% url "customer.views.profileChangeSubmit" %}" method="POST">
+  {% csrf_token %}
+   <div class="control-group">
+   <label class="control-label" for="inputEmail">邮箱</label>
+   <div class="controls">
+   {{form.email}}
+   </div>
+   </div>
+   <div class="control-group">
+   <label class="control-label" for="inputPassword">密码</label>
+   <div class="controls">
+   {{form.password}}
+   </div>
+   </div>
+   <div class="control-group">
+   <label class="control-label" for="inputPassword">联系电话</label>
+   <div class="controls">
+   {{form.phonenumber}}
+   </div>
+   </div>
+   
+   <div class="control-group">
+   <div class="controls">
+<p><button type="submit" class="btn">提交修改</button></p>
+   </div>
+   </div>
+   </form>
+</div>
+</div>
+{% endblock %}

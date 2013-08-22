@@ -1,0 +1,59 @@
+{% extends "wrbase.html"%}
+{% block nav%}
+<div class="row">
+    <h3 class="muted logo">帮我论文.com</h3>
+     <ul class="nav nav-tabs">
+    <li><a href="{% url "require.views.writerRequirementMarket" %}"><i class="icon-search"></i>论文市场</a></li>
+      <li class="active">
+        <a href="{% url "require.views.writerBidList" %}">个人中心</a>
+      </li>
+      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+    </ul>
+    </div>
+{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="span4">
+  <div class="well" id="nav-left">
+<ul class="nav nav-list">
+  <li class="nav-header">用户中心</li>
+  <li><a href="{% url "require.views.writerBidList" %}">我的竞标</a></li>
+  <li  class="active"><a href="{% url "transaction.views.writerTransactionList" %}">我的交易</a></li>
+  <li><a href="{% url "writer.views.profilePage" %}">个人信息</a></li>
+</ul>
+</div>
+</div>
+   <div class="span8">
+ {% if tlist %}
+ <table class="table table-hover table-bordered">
+ <thead>
+ <tr>
+    <td>人民币</td>
+     <td>中标时间</td>
+     <td>查看交易详情</td>
+    <td>交易状态</td>
+ </tr>
+ </thead>
+ <tbody> 
+  {% for listitem in tlist %}
+  <tr>
+     <td>{{ listitem.requirement.prize}}</td>
+      <td>{{ listitem.start}}</td>
+      <td><a href="{% url "transaction.views.TransactionDetail" listitem.pk %}"><button class="btn btn-success">查看交易详情</button></a></td>
+      <td>
+        {% if not listitem.finish %}
+        进行中
+        {% elif listitem.finish %}
+        已结束
+        {% endif %}
+      </td>
+  </tr>
+  {% endfor %}
+ </tbody>
+ </table>
+ {% else %}
+  <p>您还没有交易,在您中标以后,可以在此处查看到自己中标的需求。</p>
+  {% endif %}
+   </div>
+</div>
+{% endblock %}

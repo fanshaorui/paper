@@ -1,0 +1,48 @@
+{% extends "wrbase.html"%}
+{% block nav %}
+  <div class="row">
+    <h3 class="muted logo">帮我论文.com</h3>
+    <ul class="nav nav-tabs">
+    <li class="active"><a href="{% url "require.views.writerRequirementMarket" %}"><i class="icon-search"></i>论文市场</a></li>
+      <li>
+        <a href="{% url "require.views.writerBidList" %}">个人中心</a>
+      </li>
+      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+    </ul>
+    </div>
+{% endblock%}
+{% block content %}
+  <div class="row">
+    
+  <div class="span8">
+    <ul class="breadcrumb">
+      <li><a href="{% url "require.views.writerRequirementMarket" %}">论文市场</a> <span class="divider">/</span></li>
+      <li class="active">需求详情</li>
+    </ul>
+    <div class="well">
+    <p>悬赏金额:{{requirement.prize}}</p>
+    <p>发布日期:{{requirement.createdtime}}</p>
+    <p>影响因子要求:{{requirement.scifactor}}</p>
+    <div><p>其他要求:{{requirement.description}}</p></div>
+    </div>
+    
+      {% if didbid %}
+      <form action="{% url "require.views.bid" requirement.pk %}" method="POST">
+        {% csrf_token %}
+        <div>
+      <p>您已经参与竞标</p>
+      <button name="submit" class="btn btn-warning disabled" type="submit" value="no">取消竞标</button>
+        </div>
+      </form>
+      {% else %}
+      <form action="{% url "require.views.bid" requirement.pk %}" method="POST">
+        {% csrf_token %}
+        <div>
+      <button name="submit" class="btn btn-info" type="submit" value="yes">竞标</button></div>
+    </form>
+    {% endif %}
+	<div class="span4">
+	</div>
+	</div>
+	</div>
+{% endblock %}

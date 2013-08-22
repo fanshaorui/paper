@@ -1,0 +1,40 @@
+
+body{
+    padding-top: 20px;
+    padding-bottom: 60px;
+      }
+.container {
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+.logo{	
+	padding-bottom:30px;
+}
+.banner-box{
+	margin-top: 80px;
+	margin-left: 50px;
+}
+#aiyinsitan
+{
+height: 250px;
+	background-image: url(../../static/img/banner2.png);
+	background-repeat: no-repeat;
+}
+#jinbi
+{
+height: 250px;
+	background-image: url(../../static/img/banner3.png);
+	background-repeat: no-repeat;
+}
+#specialistlist
+{
+	margin-top: 20px;
+}
+#tab3{
+padding-top: 30px;
+padding-left: 50px;
+}
+#nav-left{
+	max-width: 300px;
+	padding:8px 0;
+}

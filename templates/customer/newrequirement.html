@@ -1,0 +1,46 @@
+{% extends "rebase.html" %}
+{% block nav %}
+  <div class="container">
+  <div class="row">
+    <h3 class="muted logo">帮我论文.com</h3>
+    <ul class="nav nav-tabs">
+      <li>
+        <a href="{% url "require.views.customerRequirmentList" %}">个人中心</a>
+      </li>
+      <li><a href="{% url "require.views.customerRequirementMarket" %}">论文市场</a></li>
+      <li class="active"><a href="{% url "require.views.newRequirement" %}"><i class="icon-plus-sign"></i>发布需求</a></li>
+      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+    </ul>
+  </div>
+  {% endblock %}
+{% block content%}
+<div class="row">
+    <script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script>
+            tinymce.init({selector:'textarea'});
+    </script>
+    <div class="span8">
+    <form method="POST" action="{% url "require.views.newRequirementSubmit" %}">
+      {% csrf_token %}
+    <h4>悬赏金额:</h4>
+    <div class="input-prepend input-append">
+      <span class="add-on">人民币</span>
+      {{form.prize}}
+      <span class="add-on">元</span>
+    </div>
+    <h4>影响因子:</h4>
+    <div class="input-append">
+      {{form.scifactor}}
+      <span class="add-on">分</span>
+    </div>
+    <h4>需求描述:</h4>
+    {{ form.description }}
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">提交需求</button>
+      </div>
+  </form>
+  <div class="span4">
+  </div>
+  </div>
+  </div>
+  {% endblock %}

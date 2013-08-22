@@ -1,0 +1,67 @@
+{% extends "wrbase.html"%}
+{% block nav%}
+<div class="row">
+    <h3 class="muted logo">帮我论文.com</h3>
+    <ul class="nav nav-tabs">
+    <li><a href="{% url "require.views.writerRequirementMarket" %}"><i class="icon-search"></i>论文市场</a></li>
+      <li class="active">
+        <a href="{% url "require.views.writerBidList" %}">个人中心</a>
+      </li>
+      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+    </ul>
+    </div>
+   {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="span4">
+    <div class="well" id="nav-left">
+<ul class="nav nav-list">
+  <li class="nav-header">用户中心</li>
+   <li><a href="{% url "require.views.writerBidList" %}">我的竞标</a></li>
+  <li><a href="{% url "transaction.views.writerTransactionList" %}">我的交易</a></li>
+  <li  class="active"><a href="{% url "writer.views.profilePage" %}">个人信息</a></li>
+</ul>
+</div>
+</div>
+<div class="span8">
+  <form class="form-horizontal" action="{% url "writer.views.registerChangeSubmit" %}" method="POST">
+  {% csrf_token %}
+   <div class="control-group">
+   <label class="control-label" for="inputEmail">邮箱</label>
+   <div class="controls">
+   {{form.email}}
+   </div>
+   </div>
+   <div class="control-group">
+   <label class="control-label" for="inputPassword">密码</label>
+   <div class="controls">
+   {{form.password}}
+   </div>
+   </div>
+   <div class="control-group">
+   <label class="control-label" for="inputPassword">联系电话</label>
+   <div class="controls">
+   {{form.phonenumber}}
+   </div>
+   </div>
+   <div class="control-group">
+   <label class="control-label" for="inputPassword">真实姓名</label>
+   <div class="controls">
+   {{form.realname}}
+   </div>
+   </div>
+   <div class="control-group">
+   <label class="control-label" for="inputPassword">自我介绍</label>
+   <div class="controls">
+   {{form.selfdescription}}
+   </div>
+   </div>
+   <div class="control-group">
+   <div class="controls">
+<p><button type="submit" class="btn">提交修改</button></p>
+   </div>
+   </div>
+   </form>
+</div>
+</div>
+{% endblock %}

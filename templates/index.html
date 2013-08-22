@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block title %}
+帮我论文.com-学术论文发表众包网站
+{% endblock %}
+{% block content %}
+<div class="row">
+      <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab">我想发论文</a></li>
+          <li><a href="#tab2" data-toggle="tab">我会写论文</a></li>
+          <li><a href="#tab3" data-toggle="tab"><i class="icon-eye-open"></i>现在登陆</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab1">
+            <div class="row">
+            <div class="span4" id="aiyinsitan">
+            </div>
+            <div class="span8">
+            <div class="banner-box" >
+            <h4>又快要评职称了,还在为没空写论文烦恼？</h4>
+            <p>现在就注册<strong>帮我论文.com</strong>,够隐私够快,全国注册写手为您的论文发表之路助阵。</p>
+            <a href="{% url "customer.views.register" %}"><button class="btn-large btn-primary" >需求方注册</button></a>
+            </div>
+            </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab2">
+            <div class="row">
+            <div class="span8">
+            <div class="banner-box">
+            <h4>有科研成果与论文发表经验,仍然囊中羞涩？</h4>
+            <p>现在就注册<strong>帮我论文.com</strong>,帮您将科研成果快速转化为银行存款。</p>
+            <a href="{% url "writer.views.register" %}"><button  class="btn-large btn-primary">作者注册</button></a>
+            </div>
+            </div>
+            <div class="span4" id="jinbi">
+            </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab3">
+          <form class="form-horizontal" action="{% url "main.views.login_form" %}" method="POST">
+            {% csrf_token %}
+          <div class="control-group">
+          <label class="control-label" for="inputEmail">账号</label>
+          <div class="controls">
+            <p>
+          {{ form.name }}
+        </p>
+          </div>
+          </div>
+          <div class="control-group">
+          <label class="control-label" for="inputPassword">密码</label>
+          <div class="controls">
+          {{ form.password }}
+          </div>
+          </div>
+          <div class="control-group">
+          <div class="controls">
+            <p>
+          <button type="submit" class="btn">登陆</button>
+        </p>
+          </div>
+          </div>
+          </form>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="row">
+      <div class="span12" id="specialistlist"> 
+      <div class="page-header"> 
+      <p><i class="icon-thumbs-up"></i><strong>专家案例</strong></p>
+      </div>
+    <table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+      <td>姓名</td>
+        <td>学历</td>
+        <td>工作单位</td>
+        <td>本月收入</td>
+    </tr>
+    </thead>
+    <tbody>
+     <tr>
+       <td>张老师</td>
+         <td>博士</td>
+         <td>北京大学</td>
+         <td>14500元</td>
+     </tr>
+     <tr>
+       <td>赵老师</td>
+         <td>博士后</td>
+         <td>华中科技大学</td>
+         <td>8800元</td>
+     </tr>
+     <tr>
+       <td>李老师</td>
+         <td>博士</td>
+         <td>苏州大学</td>
+         <td>7100元</td>
+     </tr>
+    </tbody>
+    </table>
+    <p class="text-right"><a href="{% url "writer.views.register" %}">注册前去竞标</a></p>
+     </div>
+      </div>
+      <div class="row">
+        <div class="span12" id="specialistlist"> 
+        <div class="page-header"> 
+        <p><i class="icon-thumbs-up"></i><strong>需求案例</strong></p>
+        </div>
+      <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <td>价格</td>
+          <td>SCI分数要求</td>
+          <td>其他要求</td>
+      </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td>50000人民币</td>
+           <td>4分</td>
+           <td>必须发布在国内知名医学期刊,10月份以前发表</td>
+       </tr>
+       <tr>
+         <td>10000人民币</td>
+           <td>2分</td>
+           <td>必须发布在国内知名临床医学期刊,11月中发表</td>
+       </tr>
+       <tr>
+         <td>5000人民币</td>
+           <td>1分</td>
+           <td>必须发布在国内知名生物学期刊,12月初必须发表</td>
+       </tr>
+      </tbody>
+      </table>
+      <p class="text-right"><a href="{% url "customer.views.register" %}">注册发布需求</a></p>
+       </div>
+        </div>
+{% endblock %}

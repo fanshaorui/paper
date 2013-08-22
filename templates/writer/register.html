@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+作者注册
+{% endblock %}
+{% block content %}
+    <div class="row">
+     <ul class="breadcrumb">
+     <li><a href="/">首页</a> <span class="divider">/</span></li>
+     <li class="active">作者注册</li>
+     </ul>
+     <form class="form-horizontal" action="{% url "writer.views.registerSubmit"%}" method="POST">
+          {% csrf_token %}
+     <div class="control-group">
+     <label class="control-label" for="inputEmail">用户名</label>
+     <div class="controls">
+     <p>{{form.name}}</p>
+     </div>
+     </div>
+     <div class="control-group">
+     <label class="control-label" for="inputPassword">密码</label>
+     <div class="controls">
+     <p>{{form.password}}</p>
+     </div>
+     </div>
+     <div class="control-group">
+     <label class="control-label" for="inputPassword">邮箱</label>
+     <div class="controls">
+     <p>{{form.email}}</p>
+     </div>
+     </div>
+     <div class="control-group">
+     <label class="control-label" for="inputPassword">联系电话</label>
+     <div class="controls">
+     <p>{{form.phonenumber}}</p>
+     </div>
+     </div>
+     <div class="control-group">
+     <label class="control-label" for="inputPassword">真实姓名</label>
+     <div class="controls">
+     <p>{{form.realname}}</p>
+     </div>
+     </div>
+     <div class="control-group">
+     <label class="control-label" for="inputPassword">自我介绍</label>
+     <div class="controls">
+     <p>{{form.selfdescription}}</p>
+     </div>
+     </div>
+     
+     <div class="control-group">
+     <div class="controls">
+  <p><button type="submit" class="btn">注册</button></p>
+     </div>
+     </div>
+     </form>
+      </div>
+{% endblock %}

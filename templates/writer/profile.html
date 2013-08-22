@@ -1,0 +1,38 @@
+{% extends "rebase.html"%}
+{% block nav %}
+  <div class="row">
+    <h3 class="muted logo">帮我论文.com</h3>
+     <ul class="nav nav-tabs">
+    <li><a href="{% url "require.views.writerRequirementMarket" %}"><i class="icon-search"></i>论文市场</a></li>
+      <li class="active">
+        <a href="{% url "require.views.writerBidList" %}">个人中心</a>
+      </li>
+      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+    </ul>
+  </div>
+{% endblock%}
+{% block content %}
+    <div class="row">    
+    <div class="span8">
+      {%if preurl %}
+    <ul class="breadcrumb">
+      <li><a href="{% url "require.views.writerRequirementMarket" %}">论文市场</a> <span class="divider">/</span></li>
+      <li><a href="{{preurl}}">需求详情</a> <span class="divider">/</span></li>
+      <li class="active">查看资料</li>
+    </ul>
+    <div class="well">
+      <p>您可以通过联系该投标者商议论文细节:</p>
+    <p>用户名:{{writerprofile.user.username}}</p>
+    <p>真实姓名:{{writerprofile.realname}}</p>
+    <p>联系电话:{{writerprofile.phonenumber}}</p>
+    <div><p>自我介绍:{{writerprofile.selfdescription}}</p></div>
+    </div>
+    <p><a href="{{preurl}}"><button class="btn">返回</button></a></p>
+    {% else %}
+    <p>不能查看用户资料</p>
+    {% endif %}
+	<div class="span4">
+	</div>
+	</div>
+	</div>
+{% endblock %}

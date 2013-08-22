@@ -35,8 +35,10 @@ urlpatterns = patterns('',
     url(r'^finishtransaction/(\d+)$','transaction.views.finishTransaction'),#论文已经发表，交易结束
 #main.app
     url(r'^accounts/logout/$','main.views.logout_view'),#退出
-    url(r'^accounts/loginform/$','main.views.login_form'),#登陆
+    url(r'^accounts/loginform/$','main.views.login_form'),#登陆表单
+    url(r'^login/$','main.views.loginpage'),#登陆页
     url(r'^about/$','main.views.about'),#关于页
-    url(r'^$','main.views.main'),#首页
+    url(r'^writerindex/$','main.views.writerindex'),#我会写论文
+    url(r'^$','main.views.main'),#我想发论文
 )
 

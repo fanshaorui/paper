@@ -68,3 +68,13 @@ def logout_view(request):
 #about
 def about(request):
 	return render_to_response("about.html",dict())
+def loginpage(request):
+    return render_to_response("login.html",RequestContext(request,dict(form=LoginForm())))
+def writerindex(request):
+	if request.user.is_authenticated():
+	    if request.session['userkind']=="customer":
+		return HttpResponseRedirect(reverse("require.views.newRequirement"))
+	    elif request.session['userkind']=="writer":
+		return HttpResponseRedirect(reverse("writer.views.profilePage"))
+	else:
+	    return render_to_response("writerindex.html",RequestContext(request,dict(form=LoginForm())))

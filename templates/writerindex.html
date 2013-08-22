@@ -5,20 +5,21 @@
 {% block content %}
 <div class="row">
         <ul class="nav nav-tabs">
-        <li class="active"><a href="/">我想发论文</a></li>
-        <li><a href="{% url "main.views.writerindex" %}">我会写论文</a></li>
+        <li><a href="/">我想发论文</a></li>
+        <li class="active"><a href="{% url "main.views.writerindex" %}">我会写论文</a></li>
         <li><a href="{% url "main.views.loginpage" %}"><i class="icon-eye-open"></i>现在登陆</a></li>
         </ul>
-         <div class="row">
-            <div class="span4" id="aiyinsitan">
-            </div>
-            <div class="span8">
-            <div class="banner-box" >
-            <h4>又快要评职称了,还在为没空写论文烦恼？</h4>
-            <p>现在就注册<strong>帮我论文.com</strong>,够隐私够快,全国注册写手为您的论文发表之路助阵。</p>
-            <a href="{% url "customer.views.register" %}"><button class="btn-large btn-primary" >需求方注册</button></a>
-            </div>
-            </div>
+        <div class="row">
+        <div class="span8">
+        <div class="banner-box">
+        <h4>有科研成果与论文发表经验,仍然囊中羞涩？</h4>
+        <p>现在就注册<strong>帮我论文.com</strong>,帮您将科研成果快速转化为银行存款。</p>
+        <a href="{% url "writer.views.register" %}"><button  class="btn-large btn-primary">作者注册</button></a>
+        </div>
+        </div>
+        <div class="span4" id="jinbi">
+        </div>
+        </div>
 </div>
       <div class="row">
       <div class="span12" id="specialistlist"> 

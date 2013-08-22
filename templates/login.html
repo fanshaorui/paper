@@ -5,20 +5,36 @@
 {% block content %}
 <div class="row">
         <ul class="nav nav-tabs">
-        <li class="active"><a href="/">我想发论文</a></li>
+        <li><a href="/">我想发论文</a></li>
         <li><a href="{% url "main.views.writerindex" %}">我会写论文</a></li>
-        <li><a href="{% url "main.views.loginpage" %}"><i class="icon-eye-open"></i>现在登陆</a></li>
+        <li class="active"><a href="#"><i class="icon-eye-open"></i>现在登陆</a></li>
         </ul>
-         <div class="row">
-            <div class="span4" id="aiyinsitan">
-            </div>
-            <div class="span8">
-            <div class="banner-box" >
-            <h4>又快要评职称了,还在为没空写论文烦恼？</h4>
-            <p>现在就注册<strong>帮我论文.com</strong>,够隐私够快,全国注册写手为您的论文发表之路助阵。</p>
-            <a href="{% url "customer.views.register" %}"><button class="btn-large btn-primary" >需求方注册</button></a>
-            </div>
-            </div>
+          <div class="span12">
+          <form class="form-horizontal" action="{% url "main.views.login_form" %}" method="POST">
+            {% csrf_token %}
+          <div class="control-group">
+          <label class="control-label" for="inputEmail">账号</label>
+          <div class="controls">
+            <p>
+          {{ form.name }}
+        </p>
+          </div>
+          </div>
+          <div class="control-group">
+          <label class="control-label" for="inputPassword">密码</label>
+          <div class="controls">
+          {{ form.password }}
+          </div>
+          </div>
+          <div class="control-group">
+          <div class="controls">
+            <p>
+          <button type="submit" class="btn">登陆</button>
+        </p>
+          </div>
+          </div>
+          </form>
+          </div>
 </div>
       <div class="row">
       <div class="span12" id="specialistlist"> 

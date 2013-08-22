@@ -20,21 +20,32 @@
             tinymce.init({selector:'textarea'});
     </script>
     <div class="span8">
-    <form method="POST" action="{% url "require.views.newRequirementSubmit" %}">
+    <form method="POST" action="{% url "require.views.newRequirement" %}">
       {% csrf_token %}
     <h4>悬赏金额:</h4>
     <div class="input-prepend input-append">
       <span class="add-on">人民币</span>
       {{form.prize}}
       <span class="add-on">元</span>
+
     </div>
+              {% if form.prize.errors %}
+     <div class="alert alert-error">{{form.prize.errors}}</div>
+     {% endif %}
     <h4>影响因子:</h4>
     <div class="input-append">
       {{form.scifactor}}
       <span class="add-on">分</span>
+
     </div>
+          {% if form.scifactor.errors %}
+     <div class="alert alert-error">{{form.scifactor.errors}}</div>
+     {% endif %}
     <h4>需求描述:</h4>
     {{ form.description }}
+    {% if form.description.errors %}
+     <div class="alert alert-error">{{form.description.errors}}</div>
+     {% endif %}
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">提交需求</button>
       </div>

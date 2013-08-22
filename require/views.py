@@ -10,10 +10,24 @@ from .models import Requirement
 from .forms import RequirementForm
 @login_required
 def customerRequirmentList(request):
-	lists=Requirement.objects.filter(creator=request.user,finish=False)
+	lists=Requirement.objects.filter(creator=request.user,finish=False).order_by("-createdtime")
 	return render_to_response("customer/requirementlist.html",dict(lists=lists))
 @login_required
 def newRequirement(request):
+    if request.method=="POST":
+	form=RequirementForm(request.POST)
+	if form.is_valid():
+	    requirementform=form.cleaned_data
+	    try:
+		requirement=Requirement(creator=request.user,description=requirementform['description'],scifactor=requirementform['scifactor'],prize=requirementform['prize'])
+		requirement.save()
+		return HttpResponseRedirect(reverse("require.views.customerRequirmentList"))
+	    except:
+		print "save failed"
+		return HttpResponseRedirect("/")
+	else:
+            return render_to_response("customer/newrequirement.html",RequestContext(request,dict(form=form)))
+    else:
 	return render_to_response("customer/newrequirement.html",RequestContext(request,dict(form=RequirementForm())))
 @login_required
 def customerRequirementMarket(request):
@@ -69,20 +83,3 @@ def writerBidList(request):
 		if user in requirement.biduser.all():
 			userbid.append(requirement)
 	return render_to_response("writer/mybid.html",dict(userbid=userbid))
-@login_required
-def newRequirementSubmit(request):
-	if request.method=="POST":
-		form=RequirementForm(request.POST)
-		if form.is_valid():
-			requirementform=form.cleaned_data
-			try:
-				requirement=Requirement(creator=request.user,description=requirementform['description'],scifactor=requirementform['scifactor'],prize=requirementform['prize'])
-				requirement.save()
-				return HttpResponseRedirect("/")
-			except:
-				print "save failed"
-				return HttpResponseRedirect("/")
-		else:
-			print form.errors
-			return HttpResponseRedirect("/")
-	return HttpResponseRedirect("/")

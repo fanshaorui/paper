@@ -23,3 +23,15 @@ selfdescription_error_messages={
     "required":u"自我介绍不能为空",
     "invalid":u"请输入正确的自我介绍",
 }
+description_error_messages={
+    "required":u"需求说明不能为空",
+    "invalid":u"请输入正确的需求说明",
+}
+scifactor_error_messages={
+    "required":u"影响因子不能为空",
+    "invalid":u"请输入正确的影响因子",
+}
+prize_error_messages={
+    "required":u"价格不能为空",
+    "invalid":u"请输入正确的价格",
+}

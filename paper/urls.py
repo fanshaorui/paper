@@ -16,7 +16,6 @@ urlpatterns = patterns('',
     url(r'^writer/profile/(\d+)/$','writer.views.writerprofile'),#作者个人信息展示页
 #require.app
     url(r'^require/new/$','require.views.newRequirement'),#需求方提交新需求页面
-    url(r'^require/new/submit/$','require.views.newRequirementSubmit'),#需求方提交新需求表单 
     url(r'^customer/market/$','require.views.customerRequirementMarket'),#需求方查看全站需求列表
     url(r'^writer/market/$','require.views.writerRequirementMarket'),#写手查看全站需求列表
     url(r'^require/detail/(\d+)/$','require.views.detail'),#需求细节展示页

@@ -41,33 +41,33 @@ def register(request):
             return render_to_response("customer/register.html",RequestContext(request,dict(form=ProfileForm())))
 @login_required
 def profilePage(request):
-	if request.session['userkind']=="customer":
-		return render_to_response("customer/profile.html",RequestContext(request,dict(form=changeProfileForm())))
-	else:
-		return HttpResponseRedirect("/")
-@login_required
-def profileChangeSubmit(request):
-	if request.method=="POST":
-		form=changeProfileForm(request.POST)
-		if form.is_valid():
-			newform=form.cleaned_data
-			try:
-				newuser=User.objects.get(username=request.user.username)
-				newuser.set_password(newform['password'])
-				newuser.email=newform['email']
-				newuser.save()
-			except:
-				print "user info change error"
-				HttpResponseRedirect("/")
-			try:
-				newprofile=Profile.objects.get(user=request.user)
-				newprofile.phonenumber=newform['phonenumber']
-				newprofile.save()
-				auth.logout(request)
-				user_login=auth.authenticate(username=newuser.username,password=newform['password'])
-				auth.login(request,user_login)
-				request.session['userkind']='customer'
-			except:
-				print "needprofile change error"
-				HttpResponseRedirect('/')
-	return HttpResponseRedirect(reverse("customer.views.profilePage"))
+    if request.method=="POST":
+	form=changeProfileForm(request.POST)
+	if form.is_valid():
+	    newform=form.cleaned_data
+	    try:
+		newuser=User.objects.get(username=request.user.username)
+		newuser.set_password(newform['password'])
+		newuser.email=newform['email']
+		newuser.save()
+	    except:
+		print "user info change error"
+		HttpResponseRedirect("/")
+	    try:
+		newprofile=Profile.objects.get(user=request.user)
+		newprofile.phonenumber=newform['phonenumber']
+		newprofile.save()
+		auth.logout(request)
+		user_login=auth.authenticate(username=newuser.username,password=newform['password'])
+		auth.login(request,user_login)
+		request.session['userkind']='customer'
+	    except:
+		print "needprofile change error"
+		return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse("customer.views.profilePage"))
+        else:
+            return render_to_response("customer/profile.html",RequestContext(request,dict(form=form)))   
+    elif request.session['userkind']=="customer":
+	return render_to_response("customer/profile.html",RequestContext(request,dict(form=changeProfileForm())))
+    else:
+	return HttpResponseRedirect("/")

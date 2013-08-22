@@ -10,7 +10,6 @@ urlpatterns = patterns('',
 #customer.app
     url(r'^customer/profile/$','customer.views.profilePage'),#需求方个人资料修改页面
     url(r'^accounts/register/require/$','customer.views.register'),#需求方注册页
-    url(r'^accounts/register/require/change/submit/$','customer.views.profileChangeSubmit'),#需求方修改个人资料表单
 #writer.app
     url(r'^writer/profile/edit/$','writer.views.profilePage'),#作者个人资料修改页面
     url(r'^accounts/register/writer/$','writer.views.register'),#作者注册

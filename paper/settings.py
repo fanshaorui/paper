@@ -1,8 +1,9 @@
 # Django settings for paper project.
-
+# -*- coding: utf-8 -*-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
+DATETIME_FORMAT='Y年m月j日'
+DATE_FORMAT='m月j日'
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -29,7 +30,7 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -43,7 +44,7 @@ USE_I18N = True
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
-USE_L10N = True
+USE_L10N = False
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
@@ -130,6 +131,7 @@ INSTALLED_APPS = (
     'require',
     'transaction',
     'writer',
+    'cms',
     'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',

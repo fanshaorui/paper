@@ -35,25 +35,15 @@
         <td>本月收入</td>
     </tr>
     </thead>
-    <tbody>
-     <tr>
-       <td>张老师</td>
-         <td>博士</td>
-         <td>北京大学</td>
-         <td>14500元</td>
-     </tr>
-     <tr>
-       <td>赵老师</td>
-         <td>博士后</td>
-         <td>华中科技大学</td>
-         <td>8800元</td>
-     </tr>
-     <tr>
-       <td>李老师</td>
-         <td>博士</td>
-         <td>苏州大学</td>
-         <td>7100元</td>
-     </tr>
+     <tbody>
+        {% for listitem in wlist %}
+       <tr>
+         <td>{{ listitem.name }}</td>
+           <td>{{ listitem.degree }}</td>
+           <td>{{ listitem.university }}</td>
+           <td>{{ listitem.income }}</td>
+       </tr>
+       {% endfor %}
     </tbody>
     </table>
     <p class="text-right"><a href="{% url "writer.views.register" %}">注册前去竞标</a></p>
@@ -73,21 +63,13 @@
       </tr>
       </thead>
       <tbody>
+        {% for listitem in clist %}
        <tr>
-         <td>50000人民币</td>
-           <td>4分</td>
-           <td>必须发布在国内知名医学期刊,10月份以前发表</td>
+         <td>{{ listitem.price }}</td>
+           <td>{{ listitem.sci }}</td>
+           <td>{{ listitem.require }}</td>
        </tr>
-       <tr>
-         <td>10000人民币</td>
-           <td>2分</td>
-           <td>必须发布在国内知名临床医学期刊,11月中发表</td>
-       </tr>
-       <tr>
-         <td>5000人民币</td>
-           <td>1分</td>
-           <td>必须发布在国内知名生物学期刊,12月初必须发表</td>
-       </tr>
+       {% endfor %}
       </tbody>
       </table>
       <p class="text-right"><a href="{% url "customer.views.register" %}">注册发布需求</a></p>

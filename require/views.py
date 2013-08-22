@@ -18,10 +18,10 @@ def newRequirement(request):
 @login_required
 def customerRequirementMarket(request):
 	if request.session['userkind']=="customer":
-		lists=Requirement.objects.filter(finish=False)
-		return render_to_response("customer/market.html",dict(lists=lists))
+	    lists=Requirement.objects.filter(finish=False)
+	    return render_to_response("customer/market.html",dict(lists=lists))
 	else:
-		return HttpResponseRedirect("/")
+	    return HttpResponseRedirect("/")
 #writer user
 @login_required
 def writerRequirementMarket(request):

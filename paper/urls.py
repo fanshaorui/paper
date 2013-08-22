@@ -10,13 +10,10 @@ urlpatterns = patterns('',
 #customer.app
     url(r'^customer/profile/$','customer.views.profilePage'),#需求方个人资料修改页面
     url(r'^accounts/register/require/$','customer.views.register'),#需求方注册页
-    url(r'^accounts/register/require/submit/$','customer.views.registerSubmit'),#需求方提交注册表单
     url(r'^accounts/register/require/change/submit/$','customer.views.profileChangeSubmit'),#需求方修改个人资料表单
 #writer.app
     url(r'^writer/profile/edit/$','writer.views.profilePage'),#作者个人资料修改页面
     url(r'^accounts/register/writer/$','writer.views.register'),#作者注册
-    url(r'^accounts/register/writer/submit/$','writer.views.registerSubmit'),#作者提交注册表单
-    url(r'^accounts/register/writer/change/submit/$','writer.views.registerChangeSubmit'),#作者修改个人资料表单
     url(r'^writer/profile/(\d+)/$','writer.views.writerprofile'),#作者个人信息展示页
 #require.app
     url(r'^require/new/$','require.views.newRequirement'),#需求方提交新需求页面
@@ -35,8 +32,7 @@ urlpatterns = patterns('',
     url(r'^finishtransaction/(\d+)$','transaction.views.finishTransaction'),#论文已经发表，交易结束
 #main.app
     url(r'^accounts/logout/$','main.views.logout_view'),#退出
-    url(r'^accounts/loginform/$','main.views.login_form'),#登陆表单
-    url(r'^login/$','main.views.loginpage'),#登陆页
+    url(r'^accounts/login/$','main.views.loginpage'),#登陆页
     url(r'^about/$','main.views.about'),#关于页
     url(r'^writerindex/$','main.views.writerindex'),#我会写论文
     url(r'^$','main.views.main'),#我想发论文

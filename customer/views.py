@@ -10,10 +10,7 @@ from .forms import changeProfileForm,ProfileForm
 from .models import Profile
 
 def register(request):
-	return render_to_response("customer/register.html",RequestContext(request,dict(form=ProfileForm())))
-
-def registerSubmit(request):
-	if request.method=="POST":
+    	if request.method=="POST":
 		form=ProfileForm(request.POST)
 		if form.is_valid():
 			clean_register=form.cleaned_data
@@ -29,17 +26,19 @@ def registerSubmit(request):
 				print "profile failed"
 			auth.logout(request)
 			try:
-				user_login=auth.authenticate(username=clean_register['name'],password=clean_register['password'])
-				if user_login is not None:
-					auth.login(request,user_login)
-					request.session['userkind']="need"
-					return HttpResponseRedirect(reverse("require.views.newRequirement"))
-				return HttpResponseRedirect('/')
+			    user_login=auth.authenticate(username=clean_register['name'],password=clean_register['password'])
+			    if user_login is not None:
+				auth.login(request,user_login)
+				request.session['userkind']="customer"
+				return HttpResponseRedirect(reverse("require.views.newRequirement"))
+			    return render_to_response("customer/register.html",RequestContext(request,dict(form=form)))
 			except:
-				return HttpResponseRedirect('/')
+			    render_to_response("customer/register.html",RequestContext(request,dict(form=form)))
 		else:
-			print form.errors
-			return HttpResponseRedirect("/")
+		    print form.errors
+		    return render_to_response("customer/register.html",RequestContext(request,dict(form=form)))
+        else:
+            return render_to_response("customer/register.html",RequestContext(request,dict(form=ProfileForm())))
 @login_required
 def profilePage(request):
 	if request.session['userkind']=="customer":

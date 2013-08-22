@@ -10,20 +10,29 @@
         <li class="active"><a href="#"><i class="icon-eye-open"></i>现在登陆</a></li>
         </ul>
           <div class="span12">
-          <form class="form-horizontal" action="{% url "main.views.login_form" %}" method="POST">
+          <form class="form-horizontal" action="{% url "main.views.loginpage" %}" method="POST">
             {% csrf_token %}
           <div class="control-group">
           <label class="control-label" for="inputEmail">账号</label>
           <div class="controls">
-            <p>
-          {{ form.name }}
-        </p>
+            <p>{{ form.name }}</p>
+                {% if form.name.errors %}
+                <div class="alert alert-error">{{form.name.errors}}</div>
+                {% endif %}
           </div>
           </div>
           <div class="control-group">
           <label class="control-label" for="inputPassword">密码</label>
           <div class="controls">
+                <p>
           {{ form.password }}
+          </p>
+          {% if form.password.errors %}
+          <div class="alert alert-error">{{form.password.errors}}</div>
+        {% endif %}
+        {% if message %}
+                <div class="alert alert-error">{{message}}</div>     
+          {% endif %}
           </div>
           </div>
           <div class="control-group">

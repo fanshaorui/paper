@@ -24,36 +24,61 @@
 </div>
 </div>
 <div class="span8">
-  <form class="form-horizontal" action="{% url "writer.views.registerChangeSubmit" %}" method="POST">
+  <form class="form-horizontal" action="{% url "writer.views.profilePage" %}" method="POST">
   {% csrf_token %}
    <div class="control-group">
    <label class="control-label" for="inputEmail">邮箱</label>
    <div class="controls">
-   {{form.email}}
+    <p>
+        {{form.email}}
+    </p>
+    {% if form.email.errors %}
+     <div class="alert alert-error">{{form.email.errors}}</div>
+     {% endif %}
    </div>
    </div>
    <div class="control-group">
    <label class="control-label" for="inputPassword">密码</label>
    <div class="controls">
+    <p>
    {{form.password}}
+    </p>
+    {% if form.password.errors %}
+     <div class="alert alert-error">{{form.password.errors}}</div>
+     {% endif %}
    </div>
    </div>
    <div class="control-group">
    <label class="control-label" for="inputPassword">联系电话</label>
    <div class="controls">
+    <p>
    {{form.phonenumber}}
+    </p>
+   {% if form.phonenumber.errors %}
+     <div class="alert alert-error">{{form.phonenumber.errors}}</div>
+     {% endif %}
    </div>
    </div>
    <div class="control-group">
    <label class="control-label" for="inputPassword">真实姓名</label>
    <div class="controls">
+    <p>
    {{form.realname}}
+    </p>
+    {% if form.realname.errors %}
+     <div class="alert alert-error">{{form.realname.errors}}</div>
+     {% endif %}
    </div>
    </div>
    <div class="control-group">
    <label class="control-label" for="inputPassword">自我介绍</label>
    <div class="controls">
+    <p>
    {{form.selfdescription}}
+   </p>
+    {% if form.selfdescription.errors %}
+     <div class="alert alert-error">{{form.selfdescription.errors}}</div>
+     {% endif %}
    </div>
    </div>
    <div class="control-group">

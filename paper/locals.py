@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+email_error_messages={
+	"required":u"邮箱不能为空",
+	"invalid":u"请输入正确的邮箱格式",
+}
+password_error_messages={
+	"required":u"密码不能为空",
+	"invalid":u"请输入正确的密码",
+}
+phonenumber_error_messages={
+	"required":u"电话号码不能为空",
+        "invalid":u"请输入正确的电话号码",
+}
+name_error_messages={
+	"required":u"用户名不能为空",
+        "invalid":u"请输入正确的用户名",
+}
+realname_error_messages={
+    "required":u"真实姓名不能为空",
+    "invalid":u"请输入正确的真实姓名",
+}
+selfdescription_error_messages={
+    "required":u"自我介绍不能为空",
+    "invalid":u"请输入正确的自我介绍",
+}

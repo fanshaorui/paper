@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from .models import Requirement
 from .forms import RequirementForm
+import customer
 @login_required
 def customerRequirmentList(request):
 	lists=Requirement.objects.filter(creator=request.user,finish=False).order_by("-createdtime")
@@ -19,7 +20,7 @@ def newRequirement(request):
 	if form.is_valid():
 	    requirementform=form.cleaned_data
 	    try:
-		requirement=Requirement(creator=request.user,description=requirementform['description'],scifactor=requirementform['scifactor'],prize=requirementform['prize'])
+		requirement=Requirement(creator=request.user,description=requirementform['description'],scifactor=requirementform['scifactor'],prize=requirementform['prize'],theme=requirementform['theme'],circle_min=requirementform['circle_min'],circle_max=requirementform['circle_max'])
 		requirement.save()
 		return HttpResponseRedirect(reverse("require.views.customerRequirmentList"))
 	    except:
@@ -32,16 +33,16 @@ def newRequirement(request):
 @login_required
 def customerRequirementMarket(request):
 	if request.session['userkind']=="customer":
-	    lists=Requirement.objects.filter(finish=False)
-	    return render_to_response("customer/market.html",dict(lists=lists))
+	    lists=Requirement.objects.filter(finish=False).order_by("-createdtime")
+	    return render_to_response("customer/market.html",dict(lists=lists),context_instance=RequestContext(request))
 	else:
 	    return HttpResponseRedirect("/")
 #writer user
 @login_required
 def writerRequirementMarket(request):
 	if request.session['userkind']=="writer":
-		lists=Requirement.objects.filter(finish=False)
-		return render_to_response("writer/market.html",dict(lists=lists))
+		lists=Requirement.objects.filter(finish=False).order_by("-createdtime")
+		return render_to_response("writer/market.html",dict(lists=lists),context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect("/")
 @login_required		
@@ -67,11 +68,13 @@ def detail(request,pk):
 				bidlist=requirement.biduser.all()
 			return render_to_response("customer/detail.html",RequestContext(request,dict(requirement=requirement,bidlist=bidlist)))
 		elif request.session['userkind']=="writer":
+                        profile=customer.models.Profile.objects.get(user=requirement.creator)
+                        phonenumber=profile.phonenumber
 			if request.user in requirement.biduser.all():
 				didbid=True
 			else:
 				didbid=False
-			return render_to_response("writer/detail.html",RequestContext(request,dict(requirement=requirement,didbid=didbid)))
+			return render_to_response("writer/detail.html",RequestContext(request,dict(requirement=requirement,didbid=didbid,phonenumber=phonenumber)))
 	else:
 		return HttpResponseRedirect('/')
 @login_required
@@ -83,3 +86,12 @@ def writerBidList(request):
 		if user in requirement.biduser.all():
 			userbid.append(requirement)
 	return render_to_response("writer/mybid.html",dict(userbid=userbid))
+@login_required
+def deleteMyRequire(request,pk):
+    requirement=Requirement.objects.get(pk=pk)
+    if requirement.creator==request.user:
+        requirement.delete()
+        return HttpResponseRedirect(reverse("require.views.customerRequirmentList"))
+    else:
+        HttpResponseRedirect(reverse("/"))
+

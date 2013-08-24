@@ -35,3 +35,11 @@ prize_error_messages={
     "required":u"价格不能为空",
     "invalid":u"请输入正确的价格",
 }
+circle_error_messages={
+    "required":u"周期不能为空",
+    "invalid":u"请输入数字",
+}
+theme_error_messages={
+	"required":u"论文主题不能为空",
+	"invalid":u"请输入文字",
+}

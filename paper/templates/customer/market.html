@@ -1,4 +1,5 @@
 {% extends "rebase.html" %}
+{% load endless %}
 {% block nav %}
   <div class="row">
     <h3 class="muted logo">帮我论文.com</h3>
@@ -13,27 +14,29 @@
   </div>
 {% endblock %}
 {% block content %}
+{% paginate 10,20 lists %}
 <div class="row">
    <div class="span12">
  <table class="table table-hover table-bordered">
  <thead>
  <tr>
+  <td>论文主题</td>
  	<td>价格</td>
- 	<td>发布时间</td>
-     <td>SCI分数</td>
-     <td>其他要求</td>
-     <td>操作</td>
+     <td>影响因子</td>
+     <td>论文发表周期</td>
+     <td>发布时间</td>
+     <td>具体需求</td>
  </tr>
  </thead>
  <tbody>
   {% for listitem in lists%}
   <tr>
+	  <td>{{ listitem.theme}}</td>
   	 <td>{{ listitem.prize }}人民币</td>
+	 <td>{{ listitem.scifactor}}分</td>
+	 <td>{{listitem.circle_min}}到{{listitem.circle_max}}个月</td>
   	 <td>{{ listitem.createdtime}}</td>
-      <td>{{ listitem.scifactor}}分</td>
-      {% autoescape off %}
-      <td>{{ listitem.description}}</td>
-      {% endautoescape %}
+	
       <td><a href="{% url "require.views.detail" listitem.pk %}"><button class="btn">查看详情</button></a></td>
   </tr>
   {% endfor %}
@@ -42,4 +45,5 @@
  
    </div>
 </div>
+{% show_pages %}
 {% endblock %}

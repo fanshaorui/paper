@@ -12,6 +12,7 @@ def register(request):
     	if request.method=="POST":
 		form=ProfileForm(request.POST)
 		if form.is_valid():
+                        human=True
 			clean_register=form.cleaned_data
 			try:
 				user=User.objects.create_user(username=clean_register['name'],password=clean_register['password'],email=clean_register['email'])

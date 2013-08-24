@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-import main,require,transaction,writer,customer
+import main,require,transaction,writer,customer,captcha
 admin.autodiscover()
-
 urlpatterns = patterns('',
 #admin.app
     url(r'^admin/', include(admin.site.urls)),
@@ -22,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^bid/(\d+)/$','require.views.bid'),#竞标
     url(r'^writer/bidlist/$','require.views.writerBidList'),#作者参与竞标列表
     url(r'^customer/requirelist/$','require.views.customerRequirmentList'),#需求方需求列表
+    url(r'require/delete/(\d+)/$','require.views.deleteMyRequire'),#删除发的需求
 #transaction.app
     url(r'^writer/transaction/$','transaction.views.writerTransactionList'),#写手交易列表
     url(r'^customer/transaction/$','transaction.views.customerTransactionList'),#需求方交易列表
@@ -34,5 +34,6 @@ urlpatterns = patterns('',
     url(r'^about/$','main.views.about'),#关于页
     url(r'^writerindex/$','main.views.writerindex'),#我会写论文
     url(r'^$','main.views.main'),#我想发论文
+    url(r'^captcha/', include('captcha.urls')),
 )
 

@@ -1,5 +1,6 @@
 # Django settings for paper project.
 # -*- coding: utf-8 -*-
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DATETIME_FORMAT='Y年m月j日'
@@ -7,7 +8,11 @@ DATE_FORMAT='m月j日'
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
-
+SITE_ROOT=os.path.realpath(os.path.dirname(__file__)) 
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'django.core.context_processors.request',
+)
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -24,7 +29,7 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -62,7 +67,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = '"/Users/fanshaorui/lunwen/lunwen/paper/static_file/",'
+STATIC_ROOT = (os.path.join(SITE_ROOT,'static_files')),
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -73,7 +78,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/Users/fanshaorui/lunwen/lunwen/paper/statics/",
+    (os.path.join(SITE_ROOT,'statics')),
 )
 
 # List of finder classes that know how to find static files in
@@ -113,9 +118,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/Users/fanshaorui/lunwen/lunwen/paper/templates",
+     (os.path.join(SITE_ROOT,'templates')),
 )
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -133,6 +137,8 @@ INSTALLED_APPS = (
     'writer',
     'cms',
     'south',
+    'endless_pagination',
+    'captcha',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

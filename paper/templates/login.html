@@ -1,25 +1,49 @@
 {% extends 'base.html' %}
 {% block title %}
-帮我论文.com-学术论文发表众包网站
+帮我论文.com-学术论文众包网站
 {% endblock %}
 {% block content %}
 <div class="row">
         <ul class="nav nav-tabs">
         <li><a href="/">我想发论文</a></li>
-        <li class="active"><a href="{% url "main.views.writerindex" %}">我会写论文</a></li>
-        <li><a href="{% url "main.views.loginpage" %}"><i class="icon-eye-open"></i>现在登陆</a></li>
+        <li><a href="{% url "main.views.writerindex" %}">我会写论文</a></li>
+        <li class="active"><a href="#"><i class="icon-eye-open"></i>现在登陆</a></li>
         </ul>
-        <div class="row">
-        <div class="span8">
-        <div class="banner-box">
-        <h4>有科研成果与论文发表经验,仍然囊中羞涩？</h4>
-        <p>现在就注册<strong>帮我论文.com</strong>,帮您将科研成果快速转化为银行存款。</p>
-        <a href="{% url "writer.views.register" %}"><button  class="btn-large btn-primary">作者注册</button></a>
-        </div>
-        </div>
-        <div class="span4" id="jinbi">
-        </div>
-        </div>
+          <div class="span12">
+          <form class="form-horizontal" action="{% url "main.views.loginpage" %}" method="POST">
+            {% csrf_token %}
+          <div class="control-group">
+          <label class="control-label" for="inputEmail">账号</label>
+          <div class="controls">
+            <p>{{ form.name }}</p>
+                {% if form.name.errors %}
+                <div class="alert alert-error">{{form.name.errors}}</div>
+                {% endif %}
+          </div>
+          </div>
+          <div class="control-group">
+          <label class="control-label" for="inputPassword">密码</label>
+          <div class="controls">
+                <p>
+          {{ form.password }}
+          </p>
+          {% if form.password.errors %}
+          <div class="alert alert-error">{{form.password.errors}}</div>
+        {% endif %}
+        {% if message %}
+                <div class="alert alert-error">{{message}}</div>     
+          {% endif %}
+          </div>
+          </div>
+          <div class="control-group">
+          <div class="controls">
+            <p>
+          <button type="submit" class="btn">登陆</button>
+        </p>
+          </div>
+          </div>
+          </form>
+          </div>
 </div>
       <div class="row">
       <div class="span12" id="specialistlist"> 
@@ -35,7 +59,7 @@
         <td>本月收入</td>
     </tr>
     </thead>
-     <tbody>
+    <tbody>
         {% for listitem in wlist %}
        <tr>
          <td>{{ listitem.name }}</td>

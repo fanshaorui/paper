@@ -29,8 +29,8 @@
  <table class="table table-hover table-bordered">
  <thead>
  <tr>
+  <td>论文主题</td>
   <td>价格</td>
-  <td>发布时间</td>
      <td>SCI分数</td>
      <td>操作</td>
  </tr>
@@ -38,8 +38,8 @@
  <tbody>
   {% for listitem in lists %}
   <tr>
+    <td>{{listitem.theme}}</td>
      <td>{{ listitem.prize }}人民币</td>
-     <td>{{ listitem.createdtime}}</td>
       <td>{{ listitem.scifactor}}分</td>
       <td><a href="{% url "require.views.detail" listitem.pk %}"><button class="btn btn-success">查看竞标情况</button></a></td>
   </tr>

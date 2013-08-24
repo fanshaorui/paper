@@ -8,6 +8,7 @@
      <li><a href="/">首页</a> <span class="divider">/</span></li>
      <li class="active">需求方注册</li>
      </ul>
+     <div class="span8">
      <form class="form-horizontal" action="{% url "customer.views.register"%}" method="POST">
           {% csrf_token %}
      <div class="control-group">
@@ -47,10 +48,32 @@
      </div>
      </div>
      <div class="control-group">
+     <div class="controls span2">
+     {{form.captcha}}
+     </div>
+     </div>
+     <div class="control-group">
      <div class="controls">
   <p><button type="submit" class="btn">注册</button></p>
      </div>
      </div>
      </form>
       </div>
+    <div class="span4">
+       <h4>注册提示</h4>
+       <dl>
+       <dt>用户名</dt>
+       <dd>您不需要留下您的真实姓名，使用网络昵称即可，我们不像淘宝要求您的真实姓名。</dd>
+      </dl>
+       <dl>
+       <dt>请输入正确的电话号码</dt>
+       <dd>因为这是作者联系您的唯一方式，如果因为电话号码而错过机会，是非常可惜的。</dd>
+       <dd>您的联系方式，只有竞标您需求的写手可以看到，保护您的隐私是我们工作重点。</dd>
+      </dl>
+      <dl>
+       <dt>请输入正确的电子邮箱</dt>
+       <dd>因为这是我们联系您的重要方式与您找回密码的唯一凭证，我们的系统会根据您的业务记录，为您自动推荐作者，这将会通过邮件完成。</dd>
+      </dl>
+    </div>
+     </div>
 {% endblock %}

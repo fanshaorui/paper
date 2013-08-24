@@ -8,6 +8,7 @@
      <li><a href="/">首页</a> <span class="divider">/</span></li>
      <li class="active">作者注册</li>
      </ul>
+     <div class="span8">
      <form class="form-horizontal" action="{% url "writer.views.register"%}" method="POST">
           {% csrf_token %}
      <div class="control-group">
@@ -64,12 +65,32 @@
      {% endif %}
      </div>
      </div>
-     
+     <div class="control-group">
+     <div class="controls span2">
+     {{form.captcha}}
+     </div>
+     </div>
      <div class="control-group">
      <div class="controls">
   <p><button type="submit" class="btn">注册</button></p>
      </div>
      </div>
      </form>
+     </div>
+     <div class="span4">
+       <h4>注册提示</h4>
+       <dl>
+       <dt>请输入真实的用户姓名</dt>
+       <dd>因为这是我们给您付款时的重要凭证，也是用户信任你的重要原因。</dd>
+      </dl>
+       <dl>
+       <dt>请输入正确的电话号码</dt>
+       <dd>因为这是需求方联系您的唯一方式，如果因为电话号码而错过机会，是非常可惜的。</dd>
+      </dl>
+      <dl>
+       <dt>请输入正确的电子邮箱</dt>
+       <dd>因为这是我们联系您的重要方式与您找回密码的唯一凭证，我们的系统会根据您的业务记录，为您自动推荐需求，这将会通过邮件完成。</dd>
+      </dl>
+     </div>
       </div>
 {% endblock %}

@@ -8,6 +8,9 @@ class Requirement(models.Model):
 	finish=models.BooleanField(default=False)
 	prize=models.IntegerField()
 	scifactor=models.IntegerField()
+        theme=models.CharField(max_length=140)
+        circle_min=models.IntegerField()
+        circle_max=models.IntegerField()
 	def __unicode__(self):
 		return self.description
 

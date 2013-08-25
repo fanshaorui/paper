@@ -32,8 +32,7 @@
     <td>论文主题</td>
     <td>价格</td>
      <td>SCI分数</td>
-     <td>其他要求</td>
-     <td>操作</td>
+     <td>查看细节</td>
  </tr>
  </thead>
  <tbody>
@@ -42,9 +41,6 @@
     <td>{{ listitem.theme}}</td>
      <td>{{ listitem.prize }}人民币</td>
       <td>{{ listitem.scifactor}}分</td>
-      {% autoescape off %}
-      <td>{{ listitem.description}}</td>
-      {% endautoescape %}
       <td><a href="{% url "require.views.detail" listitem.pk %}"><button class="btn">查看详情</button></a></td>
   </tr>
   {% endfor %}

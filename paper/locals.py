@@ -43,3 +43,11 @@ theme_error_messages={
 	"required":u"论文主题不能为空",
 	"invalid":u"请输入文字",
 }
+bank_error_messages={
+	"required":u"开户行信息不能为空",
+	"invalid":u"请输入文字",
+}
+bankaccount_error_messages={
+	"required":u"银行账户信息不能为空",
+	"invalid":u"请输入数字",
+}

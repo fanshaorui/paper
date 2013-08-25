@@ -21,7 +21,7 @@ def register(request):
 				print "user failed"
 				return render_to_response("writer/register.html",RequestContext(request,dict(form=form)))
 			try:
-				profile=Profile(user=user,phonenumber=clean_register['phonenumber'],realname=clean_register['realname'],selfdescription=clean_register['selfdescription'])
+				profile=Profile(user=user,phonenumber=clean_register['phonenumber'],realname=clean_register['realname'],selfdescription=clean_register['selfdescription'],bankaccount=clean_register['bankaccount'],bank=clean_register['bank'])
 				profile.save()
 			except:
 				print "profile failed"

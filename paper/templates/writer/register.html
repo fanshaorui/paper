@@ -57,6 +57,24 @@
      </div>
      </div>
      <div class="control-group">
+     <label class="control-label" for="inputPassword">开户行信息</label>
+     <div class="controls">
+     <p>{{form.bank}}</p>
+     {% if form.bank.errors %}
+     <div class="alert alert-error">{{form.bank.errors}}</div>
+     {% endif %}
+     </div>
+     </div>
+     <div class="control-group">
+     <label class="control-label" for="inputPassword">银行账户</label>
+     <div class="controls">
+     <p>{{form.bankaccount}}</p>
+     {% if form.bankaccount.errors %}
+     <div class="alert alert-error">{{form.bankaccount.errors}}</div>
+     {% endif %}
+     </div>
+     </div>
+     <div class="control-group">
      <label class="control-label" for="inputPassword">自我介绍</label>
      <div class="controls">
      <p>{{form.selfdescription}}</p>
@@ -81,15 +99,23 @@
        <h4>注册提示</h4>
        <dl>
        <dt>请输入真实的用户姓名</dt>
-       <dd>因为这是我们给您付款时的重要凭证，也是用户信任你的重要原因。</dd>
+       <dd>因为这是我们给您付款时的重要信息，也是用户信任你的重要原因。</dd>
       </dl>
        <dl>
        <dt>请输入正确的电话号码</dt>
-       <dd>因为这是需求方联系您的唯一方式，如果因为电话号码而错过机会，是非常可惜的。</dd>
+       <dd>因为这是需求方联系您的唯一方式，而给您付款前，我们也会通过电话跟您确认您的收款信息。</dd>
       </dl>
       <dl>
        <dt>请输入正确的电子邮箱</dt>
        <dd>因为这是我们联系您的重要方式与您找回密码的唯一凭证，我们的系统会根据您的业务记录，为您自动推荐需求，这将会通过邮件完成。</dd>
+      </dl>
+      <dl>
+       <dt>请输入正确的开户行与账号信息</dt>
+       <dd>因为这是我们给您付款的重要信息，一旦填错，只能通过联系客服人员修改。</dd>
+      </dl>
+      <dl>
+       <dt>请认真输入一段自我介绍</dt>
+       <dd>需求方在决定谁中标前，一定会查看您的自我介绍。</dd>
       </dl>
      </div>
       </div>

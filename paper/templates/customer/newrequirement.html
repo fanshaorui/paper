@@ -17,7 +17,8 @@
 <div class="row">
     <script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     <script>
-            tinymce.init({selector:'textarea'});
+            tinymce.init({selector:'textarea',menubar : false});
+            
     </script>
     <div class="span12">
     <form method="POST" action="{% url "require.views.newRequirement" %}">
@@ -45,7 +46,7 @@
     <h4>论文周期(期望):</h4>
     <div class="input-append">
       {{form.circle_min}}
-      <span class="add-on">个月</span>
+      <span class="add-on">天</span>
     </div>
     <div>请是您期望论文发表的周期，写手将通过该时间来判断可行性。</div>
     {% if form.circle_min.errors %}
@@ -54,7 +55,7 @@
         <h4>论文周期(最慢):</h4>
     <div class="input-append">
       {{form.circle_max}}
-      <span class="add-on">个月</span>
+      <span class="add-on">天</span>
     </div>
     <div>请是您期望论文发表的时间底线，如果因为文章没有即时发表产生分歧，这将是85lunwen.com仲裁的依据。</div>
     {% if form.circle_max.errors %}
@@ -66,6 +67,7 @@
       <span class="add-on">分</span>
 
     </div>
+    <div>如果您需要的论文没有影响因子要求，可以填入0。</div>
           {% if form.scifactor.errors %}
      <div class="alert alert-error">{{form.scifactor.errors}}</div>
      {% endif %}

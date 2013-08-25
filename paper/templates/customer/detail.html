@@ -23,8 +23,8 @@
       <h3>论文主题:{{requirement.theme}}</h3>
     <p>悬赏金额:{{requirement.prize}}</p>
     <p>发布日期:{{requirement.createdtime}}</p>
-    <p>期望发表周期:{{requirement.circle_min}}个月</p>
-    <p>底线发表周期:{{requirement.circle_max}}个月</p>
+    <p>期望发表周期:{{requirement.circle_min}}天</p>
+    <p>底线发表周期:{{requirement.circle_max}}天</p>
     {% autoescape off %}
     <div><p>其他要求:{{requirement.description}}</p></div>
     {% endautoescape %}
@@ -40,7 +40,7 @@
     <table class="table table-hover table-bordered">
  <thead>
  <tr>
-  <td>投标人姓名</td>
+  <td>投标人用户名</td>
   <td>查看投标人详细信息</td>
   <td>选择中标</td>
  </tr>

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
@@ -8,6 +9,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from .models import Transaction
 from require.models import Requirement
+from django.core.mail import send_mail
+from paper import mail
 @login_required
 def TransactionDetail(request,pk):
 	transaction=Transaction.objects.get(pk=pk)
@@ -45,6 +48,7 @@ def submitBid(request):
 		requirement.save()
 		transaction=Transaction(requirementuser=request.user,biduser=biduser,requirement=requirement)
 		transaction.save()
+                mail.sendmailthread('您中标了','您参与的竞标中标了,请登录85lunwen.com查看详情','85lunwen@gmail.com', [biduser.email]).start()
 		return HttpResponseRedirect("/")
 @login_required
 def writerTransactionList(request):

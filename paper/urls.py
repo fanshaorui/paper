@@ -34,6 +34,6 @@ urlpatterns = patterns('',
     url(r'^about/$','main.views.about'),#关于页
     url(r'^writerindex/$','main.views.writerindex'),#我会写论文
     url(r'^$','main.views.main'),#我想发论文
-    url(r'^captcha/', include('captcha.urls')),
+    url(r'^captcha/', include('captcha.urls')),#验证码
 )
 

@@ -38,7 +38,7 @@
    </div>
    </div>
    <div class="control-group">
-   <label class="control-label" for="inputPassword">密码</label>
+   <label class="control-label" for="inputPassword">新密码</label>
    <div class="controls">
     <p>
    {{form.password}}
@@ -67,6 +67,28 @@
     </p>
     {% if form.realname.errors %}
      <div class="alert alert-error">{{form.realname.errors}}</div>
+     {% endif %}
+   </div>
+   </div>
+   <div class="control-group">
+   <label class="control-label" for="inputPassword">开户行信息</label>
+   <div class="controls">
+    <p>
+   {{form.bank}}
+   </p>
+    {% if form.bank.errors %}
+     <div class="alert alert-error">{{form.bank.errors}}</div>
+     {% endif %}
+   </div>
+   </div>
+   <div class="control-group">
+   <label class="control-label" for="inputPassword">银行账号</label>
+   <div class="controls">
+    <p>
+   {{form.bankaccount}}
+   </p>
+    {% if form.bankaccount.errors %}
+     <div class="alert alert-error">{{form.bankaccount.errors}}</div>
      {% endif %}
    </div>
    </div>

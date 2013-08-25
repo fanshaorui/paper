@@ -69,6 +69,8 @@ def profilePage(request):
         else:
             return render_to_response("customer/profile.html",RequestContext(request,dict(form=form)))   
     elif request.session['userkind']=="customer":
-	return render_to_response("customer/profile.html",RequestContext(request,dict(form=changeProfileForm())))
+        profile=Profile.objects.get(user=request.user)
+        form=changeProfileForm(initial={'email':request.user.email,'phonenumber':profile.phonenumber})
+	return render_to_response("customer/profile.html",RequestContext(request,dict(form=form)))
     else:
 	return HttpResponseRedirect("/")

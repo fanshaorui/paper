@@ -62,6 +62,8 @@ def profilePage(request):
 		newprofile.phonenumber=newform['phonenumber']
 		newprofile.realname=newform['realname']
 		newprofile.selfdescription=newform['selfdescription']
+                newprofile.bank=newform['bank']
+                newprofile.bankaccount=newform['bankaccount']
 		newprofile.save()
 		auth.logout(request)
 		user_login=auth.authenticate(username=newuser.username,password=newform['password'])
@@ -74,7 +76,9 @@ def profilePage(request):
         else:
             return render_to_response("writer/profilepage.html",RequestContext(request,dict(form=form)))
     elif request.session['userkind']=="writer":
-	return render_to_response("writer/profilepage.html",RequestContext(request,dict(form=changeProfileForm())))
+        profile=Profile.objects.get(user=request.user)
+        form=changeProfileForm(initial={'email':request.user.email,'phonenumber':profile.phonenumber,'realname':profile.realname,'selfdescription':profile.selfdescription,'bankaccount':profile.bankaccount,'bank':profile.bank})
+	return render_to_response("writer/profilepage.html",RequestContext(request,dict(form=form)))
     else:
 	return HttpResponseRedirect("/")
 @login_required

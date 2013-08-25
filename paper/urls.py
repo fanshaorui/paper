@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^writer/bidlist/$','require.views.writerBidList'),#作者参与竞标列表
     url(r'^customer/requirelist/$','require.views.customerRequirmentList'),#需求方需求列表
     url(r'require/delete/(\d+)/$','require.views.deleteMyRequire'),#删除发的需求
+    url(r'require/edit/(\d+)/$','require.views.editMyRequire'),#修改发的需求
 #transaction.app
     url(r'^writer/transaction/$','transaction.views.writerTransactionList'),#写手交易列表
     url(r'^customer/transaction/$','transaction.views.customerTransactionList'),#需求方交易列表

@@ -34,6 +34,7 @@ def finishTransaction(request,pk):
 			if request.POST["submit"]=="yes":
 				transaction.finish=True
 				transaction.save()
+                                mail.sendmailthread('需求方已经确认论文发表','需求方已经确认论文发表，剩余80%款项我们会在3个工作日内打到您的银行账户上，请确认您的银行信息正确并注意查收','85lunwen@gmail.com', [transaction.biduser.email]).start()
 				return HttpResponseRedirect(reverse("transaction.views.customerTransactionList"))
 		else:
 			return HttpResponseRedirect("/")

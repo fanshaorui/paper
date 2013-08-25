@@ -33,6 +33,7 @@
         {% csrf_token %}
     <button class="btn btn-warning" type="submit">删除该需求</button>
     </form>
+    <a href="{% url "require.views.editMyRequire" requirement.pk %}"<button class="btn btn-info">修改需求</button></a>
     {% endifequal %}
     </div>
     {% if bidlist %}

@@ -33,6 +33,7 @@
     <form method="POST" action="{% url "transaction.views.finishTransaction" transaction.pk %}">
       {% csrf_token %}
       <button class="btn btn-warning" type="submit" name="submit" value="yes">确认已发表</button>
+      <p class="text-info"><strong>在您确认发表之后，我们会将您款项的剩余80%打给写手，请慎重确认！</strong></p>
     </form>
     {% endif %}
 	</div>

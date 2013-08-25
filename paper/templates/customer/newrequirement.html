@@ -21,8 +21,14 @@
             
     </script>
     <div class="span12">
-    <form method="POST" action="{% url "require.views.newRequirement" %}">
+      {% if pk %}
+        <form method="POST" action="{% url "require.views.editMyRequire" pk %}">
       {% csrf_token %}
+      {% else %}
+        <form method="POST" action="{% url "require.views.newRequirement" %}">
+      {% csrf_token %}
+      {% endif %}
+    
       <h4>论文主题:</h4>
     <div class="input">
       {{form.theme}} 如"乳腺癌临床研究相关领域"，准确的主题有助于写手找到您。
@@ -37,7 +43,7 @@
       <span class="add-on">元</span>
     </div>
     <div>这是您准备付给写手的报酬总额,在此之上,85lunwen.com收取10%介绍费.</div>
-    <div>在您与写手达成共识并付款之后,85lunwen.com会立刻支付20%的费用给写手,剩余80%在发表后支付。</div>
+    <div>在您与写手达成共识并付款之后,85lunwen.com会立刻支付20%的费用给写手,剩余80%在您确认发表后支付。</div>
     <div>如果论文未能成功发表,介绍费与剩余80%费用将由85lunwen.com完全退还给您.</div>
               {% if form.prize.errors %}
      <div class="alert alert-error">{{form.prize.errors}}</div>
@@ -78,7 +84,7 @@
      {% endif %}
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">提交需求</button>
-      <p class="text-error">需求在提交之后无法修改，只能删除，请谨慎提交。</p>
+      <p class="text-error">需求在提交之后您可以根据与写手沟通的结果适当修改。</p>
       <p class="text-error">如果您与写手产生分歧，该需求将是85lunwen.com进行仲裁的唯一凭证。</p>
       </div>
   </form>

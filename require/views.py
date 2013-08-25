@@ -100,4 +100,32 @@ def deleteMyRequire(request,pk):
         return HttpResponseRedirect(reverse("require.views.customerRequirmentList"))
     else:
         HttpResponseRedirect(reverse("/"))
+@login_required
+def editMyRequire(request,pk):
+    requirement=Requirement.objects.get(pk=pk)
+    if requirement.creator==request.user:
+        if request.method=="POST":
+            form=RequirementForm(request.POST)
+            if form.is_valid():
+                requirementform=form.cleaned_data
+                try:
+                    requirement.theme=requirementform['theme']
+                    requirement.description=requirementform['description']
+                    requirement.scifactor=requirementform['scifactor']
+                    requirement.prize=requirementform['prize']
+                    requirement.circle_min=requirementform['circle_min']
+                    requirement.circle_max=requirementform['circle_max']
+                    requirement.save()
+                    return HttpResponseRedirect(reverse("require.views.customerRequirmentList"))
+                except:
+                    print "save failed"
+                    return HttpResponseRedirect("/")
+            else:
+                return render_to_response("customer/newrequirement.html",RequestContext(request,dict(form=form)))
+        else:
+            #读取目前的数据并initial form
+            form=RequirementForm(initial={'theme':requirement.theme,'description':requirement.description,'scifactor':requirement.scifactor,'prize':requirement.prize,'circle_min':requirement.circle_min,'circle_max':requirement.circle_max})
+            return render_to_response("customer/newrequirement.html",RequestContext(request,dict(form=form,pk=pk)))
+    else:
+        HttpResponseRedirect(reverse("/"))
 

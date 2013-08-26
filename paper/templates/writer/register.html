@@ -30,6 +30,15 @@
      </div>
      </div>
      <div class="control-group">
+     <label class="control-label" for="inputPassword">重复密码</label>
+     <div class="controls">
+     <p>{{form.repeatpassword}}</p>
+     {% if form.repeatpassword.errors %}
+     <div class="alert alert-error">{{form.repeatpassword.errors}}</div>
+     {% endif %}
+     </div>
+     </div>
+     <div class="control-group">
      <label class="control-label" for="inputPassword">邮箱</label>
      <div class="controls">
      <p>{{form.email}}</p>

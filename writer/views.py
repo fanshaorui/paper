@@ -77,6 +77,7 @@ def profilePage(request):
             return render_to_response("writer/profilepage.html",RequestContext(request,dict(form=form)))
     elif request.session['userkind']=="writer":
         profile=Profile.objects.get(user=request.user)
+        print profile.phonenumber
         form=changeProfileForm(initial={'email':request.user.email,'phonenumber':profile.phonenumber,'realname':profile.realname,'selfdescription':profile.selfdescription,'bankaccount':profile.bankaccount,'bank':profile.bank})
 	return render_to_response("writer/profilepage.html",RequestContext(request,dict(form=form)))
     else:

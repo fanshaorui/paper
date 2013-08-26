@@ -143,7 +143,7 @@ INSTALLED_APPS = (
     'cms',
     'south',
     'endless_pagination',
-    'captcha',
+    'captcha',#pip install  django-simple-captcha
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

@@ -29,10 +29,23 @@
     <div><p>其他要求:{{requirement.description}}</p></div>
     {% endautoescape %}
     {% ifequal user  requirement.creator %}
-    <form method="POST" action="{% url "require.views.deleteMyRequire" requirement.pk %}">
+    <div id="deleterequirement"class="modal hide fade">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>确认删除需求</h3>
+    </div>
+    <div class="modal-body">
+    <p>您确定要删除这一条需求么？</p>
+    </div>
+    <div class="modal-footer">
+       <form method="POST" action="{% url "require.views.deleteMyRequire" requirement.pk %}">
         {% csrf_token %}
-    <button class="btn btn-warning" type="submit">删除该需求</button>
-    </form>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+      <button class="btn btn-warning" type="submit" name="submit" value="yes">确认</button>
+      </form>
+    </div>
+    </div>
+    <button class="btn btn-warning" data-toggle="modal" href="#deleterequirement"type="submit">删除该需求</button>
     <a href="{% url "require.views.editMyRequire" requirement.pk %}"<button class="btn btn-info">修改需求</button></a>
     {% endifequal %}
     </div>
@@ -52,12 +65,24 @@
      <td>{{ bid.username }}</td>
     <td><a href="{% url "writer.views.writerprofile" bid.pk %}"><button class="btn btn-info">点击查看资料</button></a></td>
     <td>
+    <div id="choosebid"class="modal hide fade">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>确认中标</h3>
+    </div>
+    <div class="modal-body">
+    <p>现在您需要将论文款项共{{requirement.prize}}元人民币通过支付宝支付给我们。</p>
+    </div>
+    <div class="modal-footer">
       <form method="POST" action="{% url "transaction.views.submitBid" %}">
         {% csrf_token %}
-    <input style="display:none" name="requirement" value="{{requirement.pk}}"/>
-    <button class="btn btn-primary" name="biduser" type="submit" value="{{bid.pk}}">选择中标并支付
-    </button>
-     </form>
+      <input style="display:none" name="requirement" value="{{requirement.pk}}"/>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+      <button class="btn btn-warning" type="submit" name="biduser" value="{{bid.pk}}">继续</button>
+      </form>
+    </div>
+    </div>
+    <button class="btn btn-primary" data-toggle="modal" href="#choosebid">选择中标并支付</button>
   </td>
   </tr>
   {% endfor %}

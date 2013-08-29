@@ -51,7 +51,7 @@ def submitBid(request):
                 requirement.save()
                 transaction=Transaction(requirementuser=request.user,biduser=biduser,requirement=requirement)
                 transaction.save()
-                url=create_direct_pay_by_user(transaction.pk,u"帮我论文-论文支付款",requirement.theme,requirement.prize)
+                url=create_direct_pay_by_user(transaction.order_id,u"帮我论文-论文支付款",requirement.theme,requirement.prize)
 		return HttpResponseRedirect(url)
 @login_required
 def continuePay(request):
@@ -59,7 +59,7 @@ def continuePay(request):
         transaction=Transaction.objects.get(pk=request.POST['transaction'])
         requirement=transaction.requirement
         if transaction.pay==False:
-            url=create_direct_pay_by_user(transaction.pk,u"帮我论文-论文支付款",requirement.theme,requirement.prize)
+            url=create_direct_pay_by_user(transaction.order_id,u"帮我论文-论文支付款",requirement.theme,requirement.prize)
             return HttpResponseRedirect(url)
     else:
         return HttpResponse("fail")
@@ -80,7 +80,7 @@ def notify_url_handler(request):
         if notify_verify(request.POST):
             print "return ok"
             tn = request.POST.get('out_trade_no')
-            transaction=Transaction.objects.get(pk=tn)
+            transaction=Transaction.objects.get(order_id=tn)
             transaction.pay=True
 	    transaction.save()
             mail.sendmailthread('您中标了','您参与的竞标中标了,请登录85lunwen.com查看详情','85lunwen@gmail.com', [biduser.email]).start()

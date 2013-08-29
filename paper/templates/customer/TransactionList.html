@@ -30,6 +30,7 @@
  <thead>
  <tr>
   <td>中标人</td>
+  <td>订单号</td>
   <td>人民币</td>
      <td>中标时间</td>
      <td>操作</td>
@@ -40,6 +41,7 @@
   {% for listitem in tlist %}
   <tr>
      <td><a href="{% url "writer.views.writerprofile" listitem.biduser.pk %}">{{ listitem.biduser.username }}</a></td>
+     <td>{{ listitem.order_id}}</td>
      <td>{{ listitem.requirement.prize}}</td>
       <td>{{ listitem.start}}</td>
       <td><a href="{% url "transaction.views.TransactionDetail" listitem.pk %}"><button class="btn btn-success">查看交易详情</button></a></td>

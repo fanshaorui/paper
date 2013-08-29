@@ -13,7 +13,7 @@ class Transaction(models.Model):
         order_id=models.CharField(max_length=140)
 	def __unicode__(self):
 		return self.requirementuser.username
-        def save(self,):
+        def save_order(self,):
             number=time.strftime("%Y%m%d", time.localtime())+str(self.requirement.id)+time.strftime("%H%M%S", time.localtime())
             self.order_id=number
             super(Transaction,self).save()

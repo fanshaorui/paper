@@ -50,7 +50,7 @@ def submitBid(request):
                 requirement.finish=True
                 requirement.save()
                 transaction=Transaction(requirementuser=request.user,biduser=biduser,requirement=requirement)
-                transaction.save()
+                transaction.save_order()
                 url=create_direct_pay_by_user(transaction.order_id,u"帮我论文-论文支付款",requirement.theme,requirement.prize)
 		return HttpResponseRedirect(url)
 @login_required

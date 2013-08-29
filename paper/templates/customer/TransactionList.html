@@ -46,8 +46,10 @@
       <td>
         {% if listitem.finish %}
         已结束
-        {% elif not lisitem.finish %}
-        进行中
+        {% elif listitem.pay %}
+        已支付
+        {% elif not listitem.pay %}
+        待付款
         {% endif %}
       </td>
   </tr>

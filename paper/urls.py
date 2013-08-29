@@ -2,6 +2,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 import main,require,transaction,writer,customer,captcha
+from django.views.generic import TemplateView
 admin.autodiscover()
 urlpatterns = patterns('',
 #admin.app
@@ -28,7 +29,12 @@ urlpatterns = patterns('',
     url(r'^customer/transaction/$','transaction.views.customerTransactionList'),#需求方交易列表
     url(r'^transaction/(\d+)/$','transaction.views.TransactionDetail'),#单条交易详情页
     url(r'^requirement/submitBid/$','transaction.views.submitBid'),#提交竞标
+    url(r'^transaction/notify_url/$','transaction.views.notify_url_handler'),#通知回调
+    url(r'^transaction/return_url/$','transaction.views.return_url_handler'),#跳转回调
+    url(r'^transaction/payment_success/$',TemplateView.as_view(template_name="transaction/success.html"), name="payment_success"),#成功跳转
+    url(r'^transaction/payment_error/$',TemplateView.as_view(template_name="transaction/error.html"), name="payment_error"),#失败跳转
     url(r'^finishtransaction/(\d+)$','transaction.views.finishTransaction'),#论文已经发表，交易结束
+    url(r'^transaction/continuepay/$','transaction.views.continuePay'),#对已经提交但是未完成付款的订单继续付款
 #main.app
     url(r'^accounts/logout/$','main.views.logout_view'),#退出
     url(r'^accounts/login/$','main.views.loginpage'),#登陆页

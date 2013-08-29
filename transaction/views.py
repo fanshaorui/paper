@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
@@ -11,6 +11,8 @@ from .models import Transaction
 from require.models import Requirement
 from django.core.mail import send_mail
 from paper import mail
+from alipay.alipay import *
+from django.views.decorators.csrf import csrf_exempt
 @login_required
 def TransactionDetail(request,pk):
 	transaction=Transaction.objects.get(pk=pk)
@@ -45,12 +47,23 @@ def submitBid(request):
 	if request.method=="POST":
 		requirement=Requirement.objects.get(pk=request.POST['requirement'])
 		biduser=User.objects.get(pk=request.POST['biduser'])
-		requirement.finish=True
-		requirement.save()
-		transaction=Transaction(requirementuser=request.user,biduser=biduser,requirement=requirement)
-		transaction.save()
-                mail.sendmailthread('您中标了','您参与的竞标中标了,请登录85lunwen.com查看详情','85lunwen@gmail.com', [biduser.email]).start()
-		return HttpResponseRedirect("/")
+                requirement.finish=True
+                requirement.save()
+                transaction=Transaction(requirementuser=request.user,biduser=biduser,requirement=requirement)
+                transaction.save()
+                url=create_direct_pay_by_user(transaction.pk,u"帮我论文-论文支付款",requirement.theme,requirement.prize)
+		return HttpResponseRedirect(url)
+@login_required
+def continuePay(request):
+    if request.method=="POST":
+        transaction=Transaction.objects.get(pk=request.POST['transaction'])
+        requirement=transaction.requirement
+        if transaction.pay==False:
+            url=create_direct_pay_by_user(transaction.pk,u"帮我论文-论文支付款",requirement.theme,requirement.prize)
+            return HttpResponseRedirect(url)
+    else:
+        return HttpResponse("fail")
+
 @login_required
 def writerTransactionList(request):
 	if request.session['userkind']=="writer":
@@ -61,3 +74,22 @@ def customerTransactionList(request):
 	if request.session['userkind']=="customer":
 		tlist=Transaction.objects.filter(requirementuser=request.user)
 		return render_to_response("customer/TransactionList.html",dict(tlist=tlist))
+@csrf_exempt
+def notify_url_handler(request):
+    if request.method == 'POST':
+        if notify_verify(request.POST):
+            print "return ok"
+            tn = request.POST.get('out_trade_no')
+            transaction=Transaction.objects.get(pk=tn)
+            transaction.pay=True
+	    transaction.save()
+            mail.sendmailthread('您中标了','您参与的竞标中标了,请登录85lunwen.com查看详情','85lunwen@gmail.com', [biduser.email]).start()
+            return HttpResponse("success")
+        else:
+            return HttpResponse("fail")
+    else:
+        return HttpResponse("fail")
+def return_url_handler(request):
+    if notify_verify(request.GET):
+        return HttpResponseRedirect(reverse('payment_success'))
+    return HttpResponseRedirect(reverse('payment_error'))

@@ -1,0 +1,21 @@
+{% extends "rebase.html"%}
+{% block nav %}
+  <div class="row">
+    <h3 class="muted logo">帮我论文.com</h3>
+    <ul class="nav nav-tabs">
+      <li>
+        <a href="{% url "require.views.customerRequirmentList" %}">个人中心</a>
+      </li>
+      <li class="active"><a href="{% url "require.views.customerRequirementMarket" %}">论文市场</a></li>
+      <li><a href="{% url "require.views.newRequirement" %}"><i class="icon-plus-sign"></i>发布需求</a></li>
+      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+    </ul>
+  </div>
+{% endblock%}
+{% block content %}
+    <div class="row">
+    <div class="span12">
+        您支付失败了。
+    </div>
+    </div>
+{% endblock %}

@@ -36,18 +36,20 @@
  </thead>
  <tbody> 
   {% for listitem in tlist %}
+      {% if listitem.pay %}
   <tr>
      <td>{{ listitem.requirement.prize}}</td>
       <td>{{ listitem.start}}</td>
       <td><a href="{% url "transaction.views.TransactionDetail" listitem.pk %}"><button class="btn btn-success">查看交易详情</button></a></td>
       <td>
         {% if not listitem.finish %}
-        进行中
+        对方已付款
         {% elif listitem.finish %}
         已结束
         {% endif %}
       </td>
   </tr>
+  {% endif %}
   {% endfor %}
  </tbody>
  </table>

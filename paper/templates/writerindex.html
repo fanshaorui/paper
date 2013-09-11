@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}
-帮我论文.com-学术论文众包网站
-{% endblock %}
 {% block content %}
 <div class="row">
         <ul class="nav nav-tabs">
         <li><a href="/">我想发论文</a></li>
-        <li class="active"><a href="{% url "main.views.writerindex" %}">我会写论文</a></li>
+        <li  class="active"><a href="{% url "main.views.writerindex" %}">我会写论文</a></li>
+        <li><a href="{% url "main.views.market" %}">论文市场</a></li>
         <li><a href="{% url "main.views.loginpage" %}"><i class="icon-eye-open"></i>现在登陆</a></li>
-        </ul>
+    </ul>
         <div class="row">
         <div class="span8">
         <div class="banner-box">
-        <h4>有科研成果与论文发表经验,仍然囊中羞涩？</h4>
-        <p>现在就注册<strong>帮我论文.com</strong>,帮您将科研成果快速转化为银行存款。</p>
+        <h4>有论文写作经验,却被论文公司剥削？想通过写论文赚钱却苦无客户？</h4>
+        <p>现在注册,帮您将论文写作能力快速转化为收入,我们只收取您<strong>10%</strong>。</p>
         <a href="{% url "writer.views.register" %}"><button  class="btn-large btn-primary">作者注册</button></a>
         </div>
         </div>
@@ -24,55 +22,55 @@
       <div class="row">
       <div class="span12" id="specialistlist"> 
       <div class="page-header"> 
-      <p><i class="icon-thumbs-up"></i><strong>专家案例</strong></p>
-      </div>
-    <table class="table table-hover table-bordered">
-    <thead>
-    <tr>
-      <td>姓名</td>
-        <td>学历</td>
-        <td>工作单位</td>
-        <td>本月收入</td>
-    </tr>
-    </thead>
-     <tbody>
-        {% for listitem in wlist %}
-       <tr>
-         <td>{{ listitem.name }}</td>
-           <td>{{ listitem.degree }}</td>
-           <td>{{ listitem.university }}</td>
-           <td>{{ listitem.income }}</td>
-       </tr>
-       {% endfor %}
-    </tbody>
-    </table>
-    <p class="text-right"><a href="{% url "writer.views.register" %}">注册前去竞标</a></p>
-     </div>
+      <h4>使用详情</h4>
       </div>
       <div class="row">
-        <div class="span12" id="specialistlist"> 
-        <div class="page-header"> 
-        <p><i class="icon-thumbs-up"></i><strong>需求案例</strong></p>
-        </div>
-      <table class="table table-hover table-bordered">
-      <thead>
-      <tr>
-        <td>价格</td>
-          <td>SCI分数要求</td>
-          <td>其他要求</td>
-      </tr>
-      </thead>
-      <tbody>
-        {% for listitem in clist %}
-       <tr>
-         <td>{{ listitem.price }}</td>
-           <td>{{ listitem.sci }}</td>
-           <td>{{ listitem.require }}</td>
-       </tr>
-       {% endfor %}
-      </tbody>
-      </table>
-      <p class="text-right"><a href="{% url "customer.views.register" %}">注册发布需求</a></p>
-       </div>
+      <div class="span6"><p><i class="icon-shopping-cart"></i>如何完成需求</p>
+        <ol>
+        <li>注册作者</li>
+        <li>在论文市场里寻找自己可以完成的论文</li>
+        <li>与需求方电话沟通</li>
+        <li>被需求方选中</li>
+        <li>完成论文<span class="label label-important">如果金额大于1000元,您会先收到20%款项</span></li>
+        <li>收款</li>
+        </ol></div>
+      <div class="span6"><p><i class="icon-flag"></i>如何收款？</p>
+        <ol>
+        <li>平台代收款</li>
+        <ul>
+        <li>我们平台代写手从您处进行预收款,但是在您确认论文完成之前,款项不会打给写手。</li>
+        <li>大于1000元的论文会先付20%给您,方便您进行实验或者其他需要垫款才能完成的内容。</li>
+        </ul>
+        <li>直接打到您的银行账号上</li>
+         <ul>
+        <li>我们通过支付宝进行程序化转账,保证您第一时间收到论文款项。</li>
+        <li>我们会收取10%介绍费,剩下90%都是您的收入。</li>
+        </ul>
+        </ol></div>
+      </div>
+      
+        <hr>
+        <p><i class="icon-exclamation-sign"></i>与给工作室写论文比,帮我论文平台有何优势？</p>
+        <ol>
+        <li>高提成</li>
+        <ul>
+                <li>工作室往往提成高达50%以上,但是每一篇论文都完全是您的劳动成果,所以我们只收取10%介绍费。</li>
+                <li>您直接与需求方电话沟通,可以给您自己积累客户资源!</li>
+                <li>您直接联系需求方,修改更加快捷,赚钱更有效率。</li>
+        </ul>
+        <Li>快速找到顾客</Li>
+        <ul>
+                <li>任何学科领域,都能找到需求。</li>
+        </ul>
+        <li>收款及时安全</li>
+         <ul>
+                <li>在需求方将预付款打给我们,您再开始写论文,不需要担心碰到赖账的需求方。</li>
+                <li>一旦需求方确认论文满意,我们在一个工作日内将款项达到您的指定银行卡上。</li>
+        </ul>
+        </ol>
+        <hr>
+        
+        <p class="text-left"><a href="{% url "writer.views.register" %}">注册并找到客户</a></p>
+     </div>
         </div>
 {% endblock %}

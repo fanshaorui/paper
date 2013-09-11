@@ -1,21 +1,19 @@
 {% extends 'base.html' %}
-{% block title %}
-帮我论文.com-论文发表众包网站
-{% endblock %}
 {% block content %}
 <div class="row">
         <ul class="nav nav-tabs">
-        <li class="active"><a href="/">我想发论文</a></li>
+        <li  class="active"><a href="/">我想发论文</a></li>
         <li><a href="{% url "main.views.writerindex" %}">我会写论文</a></li>
+        <li><a href="{% url "main.views.market" %}">论文市场</a></li>
         <li><a href="{% url "main.views.loginpage" %}"><i class="icon-eye-open"></i>现在登陆</a></li>
-        </ul>
+    </ul>
          <div class="row">
             <div class="span4" id="aiyinsitan">
             </div>
             <div class="span8">
             <div class="banner-box" >
-            <h4>又快要评职称了,还在为没空写论文烦恼？</h4>
-            <p>现在就注册<strong>帮我论文.com</strong>,够隐私够快,全国注册写手为您的论文发表之路助阵。</p>
+            <h4>还在为没空写论文烦恼？</h4>
+            <p>现在就注册,直接联系写手完成论文！</p>
             <a href="{% url "customer.views.register" %}"><button class="btn-large btn-primary" >需求方注册</button></a>
             </div>
             </div>
@@ -23,55 +21,62 @@
       <div class="row">
       <div class="span12" id="specialistlist"> 
       <div class="page-header"> 
-      <p><i class="icon-thumbs-up"></i><strong>专家案例</strong></p>
+      <h4>使用详情</h4>
       </div>
-    <table class="table table-hover table-bordered">
-    <thead>
-    <tr>
-      <td>姓名</td>
-        <td>学历</td>
-        <td>工作单位</td>
-        <td>本月收入</td>
-    </tr>
-    </thead>
-     <tbody>
-        {% for listitem in wlist %}
-       <tr>
-         <td>{{ listitem.name }}</td>
-           <td>{{ listitem.degree }}</td>
-           <td>{{ listitem.university }}</td>
-           <td>{{ listitem.income }}</td>
-       </tr>
-       {% endfor %}
-    </tbody>
-    </table>
-    <p class="text-right"><a href="{% url "writer.views.register" %}">注册前去竞标</a></p>
+      <div class="row">
+        <div class="span6">
+         <p><i class="icon-shopping-cart"></i>如何发布需求</p>
+        <ol>
+        <li>注册需求方</li>
+        <li>发布需求</li>
+        <li>与竞标者电话沟通</li>
+        <li>选中中标者</li>
+        <li>付款<span class="label label-important">只有您确认发表,款项才会打给写手</span></li>
+        <li>确认收货</li>
+        </ol>       
+        </div>
+        <div class="span6">
+         <p><i class="icon-flag"></i>如何付款？</p>
+        <ol>
+        <li>平台代收款</li>
+        <ul>
+        <li>我们平台代写手从您处进行预收款,但是在您确认论文完成之前,款项不会打给写手。</li>
+        </ul>
+        <li>不满意可退款</li>
+         <ul>
+        <li>如果写手完成的论文不满足您的要求,您可以向我们的客服进行申诉,获得100%退款。</li>
+        </ul>
+         <li>使用支付宝</li>
+         <ul>
+                <li>我们目前仅支持支付宝网上付款.<img src="https://img.alipay.com/home/logo.png"></li>
+        </ul>
+        </ol>       
+        </div>
+      </div>
+      
+        <hr>
+        <p><i class="icon-exclamation-sign"></i>与淘宝店、工作室比,帮我论文平台有何优势？</p>
+        <ol>
+        <li>直接面对写手</li>
+        <ul>
+                <li>您提出论文需求,有能力完成需求的写手竞标,效率高。</li>
+                <li>您直接与写手电话沟通,做出最符合您个性化要求的文章,需要修改/有不满的地方直接打电话解决!</li>       
+        </ul>
+        <li>保证隐私</li>
+         <ul>
+                <li>网站不需要您实名注册,只需要您提供电话与邮箱。</li>
+                <li>除了帮您完成论文写作的写手之外,没有人知道您的身份。</li>
+        </ul>
+        <li>满足各种论文需求</li>
+                 <ul>
+                <li>不管是本科、硕士、MBA毕业论文,还是评职称需要发表在国际期刊上的论文,这里一定有写手可以帮到您.</li>
+                </ul>
+        </ol>
+                <hr>
      </div>
       </div>
       <div class="row">
-        <div class="span12" id="specialistlist"> 
-        <div class="page-header"> 
-        <p><i class="icon-thumbs-up"></i><strong>需求案例</strong></p>
-        </div>
-      <table class="table table-hover table-bordered">
-      <thead>
-      <tr>
-        <td>价格</td>
-          <td>SCI分数要求</td>
-          <td>其他要求</td>
-      </tr>
-      </thead>
-      <tbody>
-        {% for listitem in clist %}
-       <tr>
-         <td>{{ listitem.price }}</td>
-           <td>{{ listitem.sci }}</td>
-           <td>{{ listitem.require }}</td>
-       </tr>
-       {% endfor %}
-      </tbody>
-      </table>
-      <p class="text-right"><a href="{% url "customer.views.register" %}">注册发布需求</a></p>
+      <a href="{% url "customer.views.register" %}"><button class="btn btn-link">注册发布需求</button></a>
        </div>
         </div>
 {% endblock %}

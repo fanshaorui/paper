@@ -46,6 +46,10 @@
   {% endfor %}
  </tbody>
  </table>
+  <div class="alert">
+    <p>如果您竞标的需求被需求方选中,将会在<a href="{% url "transaction.views.writerTransactionList" %}">"我的交易"</a>中显示,同时您的邮箱将收到通知邮件.</p>
+    <p>Tips:主动联系需求方,可以增加您中标的几率。</p>
+</div>
  {% else %}
  <p>您目前未竞标任何论文需求</p>
  {% endif %}

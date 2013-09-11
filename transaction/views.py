@@ -68,6 +68,7 @@ def continuePay(request):
 def writerTransactionList(request):
 	if request.session['userkind']=="writer":
 		tlist=Transaction.objects.filter(biduser=request.user)
+                #print tlist
 		return render_to_response("writer/TransactionList.html",dict(tlist=tlist))
 @login_required
 def customerTransactionList(request):

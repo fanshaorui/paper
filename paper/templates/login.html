@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}
-帮我论文.com-学术论文众包网站
-{% endblock %}
 {% block content %}
 <div class="row">
-        <ul class="nav nav-tabs">
+         <ul class="nav nav-tabs">
         <li><a href="/">我想发论文</a></li>
         <li><a href="{% url "main.views.writerindex" %}">我会写论文</a></li>
-        <li class="active"><a href="#"><i class="icon-eye-open"></i>现在登陆</a></li>
-        </ul>
+        <li><a href="{% url "main.views.market" %}">论文市场</a></li>
+        <li  class="active"><a href="{% url "main.views.loginpage" %}"><i class="icon-eye-open"></i>现在登陆</a></li>
+    </ul>
           <div class="span12">
           <form class="form-horizontal" action="{% url "main.views.loginpage" %}" method="POST">
             {% csrf_token %}
@@ -47,56 +45,6 @@
 </div>
       <div class="row">
       <div class="span12" id="specialistlist"> 
-      <div class="page-header"> 
-      <p><i class="icon-thumbs-up"></i><strong>专家案例</strong></p>
-      </div>
-    <table class="table table-hover table-bordered">
-    <thead>
-    <tr>
-      <td>姓名</td>
-        <td>学历</td>
-        <td>工作单位</td>
-        <td>本月收入</td>
-    </tr>
-    </thead>
-    <tbody>
-        {% for listitem in wlist %}
-       <tr>
-         <td>{{ listitem.name }}</td>
-           <td>{{ listitem.degree }}</td>
-           <td>{{ listitem.university }}</td>
-           <td>{{ listitem.income }}</td>
-       </tr>
-       {% endfor %}
-    </tbody>
-    </table>
-    <p class="text-right"><a href="{% url "writer.views.register" %}">注册前去竞标</a></p>
-     </div>
-      </div>
-      <div class="row">
-        <div class="span12" id="specialistlist"> 
-        <div class="page-header"> 
-        <p><i class="icon-thumbs-up"></i><strong>需求案例</strong></p>
         </div>
-      <table class="table table-hover table-bordered">
-      <thead>
-      <tr>
-        <td>价格</td>
-          <td>SCI分数要求</td>
-          <td>其他要求</td>
-      </tr>
-      </thead>
-      <tbody>
-        {% for listitem in clist %}
-       <tr>
-         <td>{{ listitem.price }}</td>
-           <td>{{ listitem.sci }}</td>
-           <td>{{ listitem.require }}</td>
-       </tr>
-       {% endfor %}
-      </tbody>
-      </table>
-      <p class="text-right"><a href="{% url "customer.views.register" %}">注册发布需求</a></p>
-       </div>
-        </div>
+      <hr>
 {% endblock %}

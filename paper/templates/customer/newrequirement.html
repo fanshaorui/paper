@@ -42,8 +42,9 @@
       {{form.prize}} 
       <span class="add-on">元</span>
     </div>
-    <div>在您与写手达成共识并付款之后,85lunwen.com会立刻支付20%的费用给写手,剩余70%在您确认发表后支付，同时收取10%的介绍费。</div>
-    <div>如果论文未能成功发表,介绍费与剩余80%费用将由85lunwen.com完全退还给您.</div>
+    <div>如果您的论文款项小于1000元,85lunwen.com会在您确认后才支付给写手,申诉成功获得100%退款。</div>
+    <div>如果您的论文款项大于1000元,85lunwen.com会立刻支付20%的费用给写手,剩余80%在您确认后支付。</div>
+    <div>如果论文未能成功发表,剩余80%费用将完全退还给您.</div>
               {% if form.prize.errors %}
      <div class="alert alert-error">{{form.prize.errors}}</div>
    {% endif %}

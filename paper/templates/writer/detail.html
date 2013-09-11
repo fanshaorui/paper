@@ -38,6 +38,7 @@
       <p class="text-info">需求方电子邮件:{{  requirement.creator.email}}</p> 
     {% endif %}
       <p>您已经参与竞标,您可以主动联系需求方.</p>
+      <a href="{% url "require.views.writerBidList" %}"><button class="btn btn-danger">查看我的竞标</button></a>
       
         </div>
       </form>

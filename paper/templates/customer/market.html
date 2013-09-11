@@ -14,10 +14,10 @@
   </div>
 {% endblock %}
 {% block content %}
-{% paginate 10,20 lists %}
+{% paginate 10,10 lists %}
 <div class="row">
    <div class="span12">
- <table class="table table-hover table-bordered">
+ <table class="table table-hover table-striped">
  <thead>
  <tr>
   <td>论文主题</td>
@@ -43,5 +43,20 @@
  
    </div>
 </div>
-{% show_pages %}
+<div class="row">
+     {% get_pages %}    
+<div class="pagination pagination-centered">   
+  <ul>
+    <li><a href="{{ pages.previous.path }}">上一页</a></li>
+    {% for page in pages %}
+	 {% if not  page.is_current  %}
+    <li><a href="{{ page.path }}">{{page.number}}</a></li>
+    {% else %}
+	 <li class="active"><a href="{{ page.path }}">{{page.number}}</a></li>
+	 {% endif %}
+    {% endfor %}
+    <li><a href="{{ pages.next.path }}">下一页</a></li>
+  </ul>
+</div>
+</div>
 {% endblock %}

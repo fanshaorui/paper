@@ -18,9 +18,9 @@ def main(request):
 	    elif request.session['userkind']=="writer":
 		return HttpResponseRedirect(reverse("writer.views.profilePage"))
 	else:
-            wlist=cms.models.writerExample.objects.all()
-            clist=cms.models.customerExample.objects.all()
-	    return render_to_response("index.html",RequestContext(request,dict(wlist=wlist,clist=clist)))
+            #wlist=cms.models.writerExample.objects.all()
+            #clist=cms.models.customerExample.objects.all()
+	    return render_to_response("index.html",RequestContext(request,dict()))
 #logout page
 def logout_view(request):
 	auth.logout(request)
@@ -83,6 +83,12 @@ def writerindex(request):
 	    elif request.session['userkind']=="writer":
 		return HttpResponseRedirect(reverse("writer.views.profilePage"))
 	else:
-            wlist=cms.models.writerExample.objects.all()
-            clist=cms.models.customerExample.objects.all()
-	    return render_to_response("writerindex.html",RequestContext(request,dict(wlist=wlist,clist=clist)))
+            #wlist=cms.models.writerExample.objects.all()
+            #clist=cms.models.customerExample.objects.all()
+	    return render_to_response("writerindex.html",RequestContext(request,dict()))
+def market(request):
+    lists=Requirement.objects.filter(finish=False).order_by("-createdtime")
+    return render_to_response("market.html",dict(lists=lists),context_instance=RequestContext(request))
+def detail(request,pk):
+    requirement=Requirement.objects.get(pk=pk)
+    return render_to_response("detail.html",RequestContext(request,dict(requirement=requirement)))

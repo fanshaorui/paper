@@ -39,6 +39,8 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/$','main.views.logout_view'),#退出
     url(r'^accounts/login/$','main.views.loginpage'),#登陆页
     url(r'^about/$','main.views.about'),#关于页
+    url(r'^market/$','main.views.market'),#匿名访问论文需求市场
+    url(r'^detail/(\d+)/$','main.views.detail'),#匿名访问论文需求详情页
     url(r'^writerindex/$','main.views.writerindex'),#我会写论文
     url(r'^$','main.views.main'),#我想发论文
     url(r'^captcha/', include('captcha.urls')),#验证码

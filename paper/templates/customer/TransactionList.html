@@ -8,8 +8,21 @@
       </li>
       <li><a href="{% url "require.views.customerRequirementMarket" %}">论文市场</a></li>
       <li><a href="{% url "require.views.newRequirement" %}"><i class="icon-plus-sign"></i>发布需求</a></li>
-      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+       <li><a href="#exit" data-toggle="modal">退出登陆</a></li>
     </ul>
+    </div>
+<div class="modal hide fade" id="exit">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>退出登录</h3>
+  </div>
+  <div class="modal-body">
+    <p>您确定退出登录么？</p>
+  </div>
+  <div class="modal-footer">
+    <a data-dismiss="modal" class="btn">关闭</a>
+    <a href="{% url "main.views.logout_view" %}" class="btn btn-primary">退出登录</a>
+  </div>
   </div>
 {% endblock %}
 {% block content %}
@@ -26,7 +39,7 @@
 </div>
 <div class="span8">
   {% if tlist %}
- <table class="table table-hover table-bordered">
+ <table class="table table-hover table-striped">
  <thead>
  <tr>
   <td>中标人</td>
@@ -58,6 +71,10 @@
   {% endfor %}
  </tbody>
  </table>
+ <div class="alert">
+    <p>您只有完成交易付款,写手才会开始写作您的论文。</p>
+    <p>在您付款后，若写手无法完成您的论文，请您凭订单号联系我们的客服人员进行退款。</p>
+</div>
  {% else %}
   <p>您还没有交易,在您对需求选定中标人且支付款项后,则会显示在此处。</p>
   {% endif %}

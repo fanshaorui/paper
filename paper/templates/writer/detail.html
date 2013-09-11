@@ -7,8 +7,21 @@
       <li>
         <a href="{% url "require.views.writerBidList" %}">个人中心</a>
       </li>
-      <li><a href="{% url "main.views.logout_view" %}">退出登陆</a></li>
+       <li><a href="#exit" data-toggle="modal">退出登陆</a></li>
     </ul>
+    </div>
+<div class="modal hide fade" id="exit">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>退出登录</h3>
+  </div>
+  <div class="modal-body">
+    <p>您确定退出登录么？</p>
+  </div>
+  <div class="modal-footer">
+    <a data-dismiss="modal" class="btn">关闭</a>
+    <a href="{% url "main.views.logout_view" %}" class="btn btn-primary">退出登录</a>
+  </div>
     </div>
 {% endblock%}
 {% block content %}
@@ -37,8 +50,11 @@
       <p class="text-info">需求方联系电话:{{ phonenumber }}</p>
       <p class="text-info">需求方电子邮件:{{  requirement.creator.email}}</p> 
     {% endif %}
-      <p>您已经参与竞标,您可以主动联系需求方.</p>
-      <a href="{% url "require.views.writerBidList" %}"><button class="btn btn-danger">查看我的竞标</button></a>
+      <div class="alert">
+	<p>您已经参与竞标,您可以主动联系需求方,争取需求方选定您中标.</p>
+	<p><a href="{% url "require.views.writerBidList" %}">查看您参与的竞标</a></p>
+      </div>
+      
       
         </div>
       </form>

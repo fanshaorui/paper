@@ -51,7 +51,7 @@
     <h3>确认发表</h3>
     </div>
     <div class="modal-body">
-    <p>您点击确认之后,我们将会将80%的尾款打给写手,您要继续确认么？</p>
+    <p>您点击确认之后,我们将会将款项打给写手,您要继续确认么？</p>
     </div>
     <div class="modal-footer">
     <form method="POST" action="{% url "transaction.views.finishTransaction" transaction.pk %}">
@@ -62,7 +62,7 @@
     </div>
     </div>
       <button data-toggle="modal" href="#admitfinish"class="btn btn-warning" type="submit" name="submit" value="yes">确认已发表</button>
-      <p class="text-info"><strong>在您确认发表之后，我们会将您款项的剩余80%打给写手，请慎重确认！</strong></p>
+      <p class="text-info"><strong>在您确认发表之后，我们会将款项打给写手，请慎重确认！</strong></p>
     {% endif %}
     {% endif %}
     {% if not transaction.pay %}

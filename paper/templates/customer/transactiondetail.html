@@ -44,6 +44,7 @@
     <div><p>其他要求:{{transaction.requirement.description}}</p></div>
     {% endautoescape %}
     </div>
+    <p><a href="{% url "django_messages.views.compose" transaction.biduser.username %}" role="button" class="btn btn-danger">给写手发站内信</a></p>
     {% if transaction.pay %}
     {% if not transaction.finish %}
     <div id="admitfinish"class="modal hide fade">

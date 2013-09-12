@@ -8,4 +8,3 @@ class RequirementForm(forms.Form):
 	prize=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder':'0','class':'span2'}),error_messages=prize_error_messages)
 	circle_min=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder':'0','class':'span1'}),error_messages=circle_error_messages)
 	circle_max=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder':'0','class':'span1'}),error_messages=circle_error_messages)
-	

@@ -45,6 +45,6 @@ urlpatterns = patterns('',
     url(r'^writerindex/$','main.views.writerindex'),#我会写论文
     url(r'^$','main.views.main'),#我想发论文
     url(r'^captcha/', include('captcha.urls')),#验证码
-    url(r'^messages/', include('django_messages.urls')),
+    url(r'^messages/', include('django_messages.urls')),#messages
 )
 

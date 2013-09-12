@@ -48,15 +48,16 @@
         {% csrf_token %}
         <div>
 	  {% if didbid %}
+	    <div>
       <p class="text-info">需求方联系电话:{{ phonenumber }}</p>
-      <p class="text-info">需求方电子邮件:{{  requirement.creator.email}}</p> 
+      <p class="text-info">需求方电子邮件:{{  requirement.creator.email}}</p>
+      <p><a href="{% url "django_messages.views.compose" requirement.creator.username %}" role="button" class="btn btn-danger">给ta发站内信</a></p>
+      </div>
     {% endif %}
       <div class="alert">
 	<p>您已经参与竞标,您可以主动联系需求方,争取需求方选定您中标.</p>
 	<p><a href="{% url "require.views.writerBidList" %}">查看您参与的竞标</a></p>
       </div>
-      
-      
         </div>
       </form>
       {% else %}
@@ -69,5 +70,6 @@
     {% endif %}
 	</div>
 	</div>
+</div>
 {% endblock %}
 <button name="submit" class="btn btn-warning disabled" type="submit" value="no">取消竞标</button>

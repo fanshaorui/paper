@@ -83,6 +83,7 @@ def detail(request,pk):
 			return render_to_response("writer/detail.html",RequestContext(request,dict(requirement=requirement,didbid=didbid,phonenumber=phonenumber)))
 	else:
 		return HttpResponseRedirect('/')
+            
 @login_required
 def writerBidList(request):
 	user=request.user

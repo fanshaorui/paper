@@ -41,6 +41,7 @@
     <p>联系电话:{{writerprofile.phonenumber}}</p>
     <div><p>写作能力介绍:{{writerprofile.selfdescription}}</p></div>
     </div>
+    <p><a href="{% url "django_messages.views.compose" writerprofile.user.username %}" role="button" class="btn btn-danger">给ta发站内信</a></p>
     <p><a href="{{preurl}}"><button class="btn">返回</button></a></p>
     {% else %}
     <p>不能查看用户资料</p>

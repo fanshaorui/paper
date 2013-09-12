@@ -1,0 +1,30 @@
+{% extends "django_messages/base.html" %} 
+{% load i18n %} 
+{% load url from future %}
+
+{% block content %} 
+<h1>{% trans "已删除信息" %}</h1>
+{% if message_list %} 
+<table class="table table-hover table-striped">
+    <thead>
+        <tr><th>{% trans "发件人" %}</th><th>{% trans "标题" %}</th><th>{% trans "日期" %}</th><th>{% trans "操作" %}</th></tr>
+    </thead>
+    <tbody>
+{% for message in message_list %} 
+    <tr>
+        <td>{{ message.sender }}</td>
+        <td> 
+        {{ message.subject }}
+        </td>
+        <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
+        <td><a href="{% url 'messages_undelete' message.id %}">{% trans "还原" %}</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>{% trans "没有信息" %}</p>
+{% endif %}   
+<br />
+<p>{% trans "已删除信息会在服务器上定期清空" %}</p>
+{% endblock %}

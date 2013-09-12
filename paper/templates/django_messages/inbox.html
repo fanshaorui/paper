@@ -1,0 +1,30 @@
+{% extends "django_messages/base.html" %} 
+{% load i18n %} 
+{% load url from future %}
+{% block content %}
+<h1>{% trans "收件箱" %}</h1>
+{% if message_list %} 
+<table class="table table-hover table-striped">
+    <thead>
+        <tr><th>{% trans "发件人" %}</th><th>{% trans "标题" %}</th><th>{% trans "接收时间" %}</th><th>{% trans "操作" %}</th></tr>
+    </thead>
+    <tbody>
+{% for message in message_list %} 
+    <tr>
+        <td>{{ message.sender }}</td>
+        <td>
+            {% if message.new %}<strong>{% endif %}
+            {% if message.replied %}<em>{% endif %}
+            <a href="{{message.get_absolute_url }}">{{ message.subject }}</a>
+            {% if message.replied %}</em>{% endif %}
+            {% if message.new %}</strong>{% endif %}</td>
+        <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
+        <td><a href="{% url 'messages_delete' message.id %}">{% trans "删除" %}</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>{% trans "没有新的信息" %}</p>
+{% endif %}  
+{% endblock %}

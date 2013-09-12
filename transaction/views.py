@@ -18,7 +18,7 @@ def TransactionDetail(request,pk):
 	transaction=Transaction.objects.get(pk=pk)
 	if request.session['userkind']=="writer":
 		if request.user==transaction.biduser:
-			return render_to_response("writer/transactiondetail.html",dict(transaction=transaction))
+			return render_to_response("writer/transactiondetail.html",RequestContext(request,dict(transaction=transaction)))
 		else:
 			return HttpResponseRedirect('/')
 	elif request.session['userkind']=="customer":
@@ -69,12 +69,12 @@ def writerTransactionList(request):
 	if request.session['userkind']=="writer":
 		tlist=Transaction.objects.filter(biduser=request.user)
                 #print tlist
-		return render_to_response("writer/TransactionList.html",dict(tlist=tlist))
+		return render_to_response("writer/TransactionList.html",RequestContext(request,dict(tlist=tlist)))
 @login_required
 def customerTransactionList(request):
 	if request.session['userkind']=="customer":
 		tlist=Transaction.objects.filter(requirementuser=request.user)
-		return render_to_response("customer/TransactionList.html",dict(tlist=tlist))
+		return render_to_response("customer/TransactionList.html",RequestContext(request,dict(tlist=tlist)))
 @csrf_exempt
 def notify_url_handler(request):
     if request.method == 'POST':

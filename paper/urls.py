@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 import main,require,transaction,writer,customer,captcha
 from django.views.generic import TemplateView
+import django_messages
 admin.autodiscover()
 urlpatterns = patterns('',
 #admin.app
@@ -44,5 +45,6 @@ urlpatterns = patterns('',
     url(r'^writerindex/$','main.views.writerindex'),#我会写论文
     url(r'^$','main.views.main'),#我想发论文
     url(r'^captcha/', include('captcha.urls')),#验证码
+    url(r'^messages/', include('django_messages.urls')),
 )
 

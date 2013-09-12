@@ -12,6 +12,7 @@ SITE_ROOT=os.path.realpath(os.path.dirname(__file__))
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
+    'django_messages.context_processors.inbox',
 )
 MANAGERS = ADMINS
 # email config
@@ -57,7 +58,7 @@ USE_I18N = True
 USE_L10N = False
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
@@ -143,7 +144,9 @@ INSTALLED_APPS = (
     'cms',
     'south',
     'endless_pagination',
-    'captcha',#pip install  django-simple-captcha
+    'captcha',
+    'django_messages',
+    'mailer',#pip install  django-simple-captcha
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

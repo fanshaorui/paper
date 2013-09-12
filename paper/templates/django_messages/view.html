@@ -1,0 +1,28 @@
+{% extends "django_messages/base.html" %} 
+{% load i18n %} 
+{% load url from future %}
+
+{% block content %}
+<h1>{% trans "查看信息" %}</h1>
+<div class="row">
+<div class="span12">
+<dl class="dl-horizontal">
+    <dt>{% trans "主题" %}</dt>
+    <dd><strong>{{ message.subject }}</strong></dd>
+    <dt>{% trans "发件人" %}</dt>
+    <dd>{{ message.sender }}</dd>
+    <dt>{% trans "日期" %} </dt>
+    <dd>{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
+    <dt>{% trans "收件人" %}</dt>
+    <dd>{{ message.recipient }}</dd>
+</dl>
+<div class="well">
+{{ message.body|linebreaksbr }}<br /><br />
+</div>
+</div>
+</div>
+{% ifequal message.recipient.pk user.pk %}
+<a href="{% url 'messages_reply' message.id %}">{% trans "回复" %}</a>
+{% endifequal %}
+<a href="{% url 'messages_delete' message.id %}">{% trans "删除" %}</a>
+{% endblock %}

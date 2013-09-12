@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load url from future %}
+
+{% blocktrans with recipient=message.recipient sender=message.sender %}您好 {{ recipient }},
+
+您收到了来自{{ sender }} 的新邮件,内容是:{% endblocktrans %}
+
+{{ message.body|safe }}
+
+--
+{% blocktrans %}发送自www.85lunwen.com{% endblocktrans %}
+{% trans "收件箱" %}: www.85lunwen.com{% url 'messages_inbox' %}
+{% trans "回复" %}: www.85lunwen.com{% url 'messages_reply' message.pk %}     

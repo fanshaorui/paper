@@ -171,7 +171,7 @@ def notify_verify(post):
     params['notify_id'] = post.get('notify_id')
     if settings.ALIPAY_TRANSPORT == 'https':
         params['service'] = 'notify_verify'
-        gateway = 'https://www.alipay.com/cooperate/gateway.do?service=notify_verify&'
+        gateway = 'https://mapi.alipay.com/gateway.do?'
     else:
         gateway = 'http://notify.alipay.com/trade/notify_query.do'
     veryfy_result = urlopen(gateway, urlencode(params)).read()

@@ -15,7 +15,7 @@ from paper import mail
 @login_required
 def customerRequirmentList(request):
 	lists=Requirement.objects.filter(creator=request.user,finish=False).order_by("-createdtime")
-	return render_to_response("customer/requirementlist.html",dict(lists=lists))
+	return render_to_response("customer/requirementlist.html",RequestContext(request,dict(lists=lists)))
 @login_required
 def newRequirement(request):
     if request.method=="POST":
@@ -91,7 +91,7 @@ def writerBidList(request):
 	for requirement in allRequirement:
 		if user in requirement.biduser.all():
 			userbid.append(requirement)
-	return render_to_response("writer/mybid.html",dict(userbid=userbid))
+	return render_to_response("writer/mybid.html",RequestContext(request,dict(userbid=userbid)))
 @login_required
 def deleteMyRequire(request,pk):
     requirement=Requirement.objects.get(pk=pk)

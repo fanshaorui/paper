@@ -10,8 +10,7 @@ from django.contrib.auth.models import User
 from .models import Requirement
 from .forms import RequirementForm
 import customer
-from django.core.mail import send_mail
-from paper import mail
+from mailer import send_mail
 @login_required
 def customerRequirmentList(request):
 	lists=Requirement.objects.filter(creator=request.user,finish=False).order_by("-createdtime")
@@ -56,8 +55,7 @@ def bid(request,pk):
 			requirement.biduser.add(request.user)
 			requirement.save()
                         if requirement.biduser.all().count()==1:
-                            print "yes"+requirement.creator.email
-                            mail.sendmailthread('有人竞标您的需求','有人竞标您的需求,请登录85lunwen.com查看详情','85lunwen@gmail.com', [requirement.creator.email]).start()
+                            send_mail('有人竞标您的需求','有人竞标您的需求,请登录85lunwen.com查看详情','85lunwen@gmail.com', [requirement.creator.email])
 			return HttpResponseRedirect(reverse("require.views.detail",args=[pk]))
 		elif request.POST['submit']=='no':
 			requirement=Requirement.objects.get(pk=pk)

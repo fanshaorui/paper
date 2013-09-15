@@ -9,10 +9,10 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from .models import Transaction
 from require.models import Requirement
-from django.core.mail import send_mail
 from paper import mail
 from alipay.alipay import *
 from django.views.decorators.csrf import csrf_exempt
+from mailer import send_mail
 @login_required
 def TransactionDetail(request,pk):
 	transaction=Transaction.objects.get(pk=pk)
@@ -36,7 +36,7 @@ def finishTransaction(request,pk):
 			if request.POST["submit"]=="yes":
 				transaction.finish=True
 				transaction.save()
-                                mail.sendmailthread('需求方已经确认论文发表','需求方已经确认论文发表，剩余80%款项我们会在3个工作日内打到您的银行账户上，请确认您的银行信息正确并注意查收','85lunwen@gmail.com', [transaction.biduser.email]).start()
+                                send_mail('需求方已经确认论文发表','需求方已经确认论文发表，剩余80%款项我们会在3个工作日内打到您的银行账户上，请确认您的银行信息正确并注意查收','85lunwen@gmail.com', [transaction.biduser.email])
 				return HttpResponseRedirect(reverse("transaction.views.customerTransactionList"))
 		else:
 			return HttpResponseRedirect("/")
@@ -79,12 +79,11 @@ def customerTransactionList(request):
 def notify_url_handler(request):
     if request.method == 'POST':
         if notify_verify(request.POST):
-            print "return ok"
             tn = request.POST.get('out_trade_no')
             transaction=Transaction.objects.get(order_id=tn)
             transaction.pay=True
 	    transaction.save()
-            mail.sendmailthread('您中标了','您参与的竞标中标了,请登录85lunwen.com查看详情','85lunwen@gmail.com', [biduser.email]).start()
+            send_mail('您中标了','您参与的竞标中标了,请登录85lunwen.com查看详情','85lunwen@gmail.com', [transaction.biduser.email])
             return HttpResponse("success")
         else:
             return HttpResponse("fail")

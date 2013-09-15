@@ -1,4 +1,6 @@
 {% extends "rebase.html" %}
+{% block head %}
+  {% endblock %}
 {% block nav %}
   <div class="container">
   <div class="row">
@@ -29,11 +31,6 @@
   {% endblock %}
 {% block content%}
 <div class="row">
-    <script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
-    <script>
-            tinymce.init({selector:'textarea',menubar : false});
-            
-    </script>
     <div class="span12">
       {% if pk %}
         <form method="POST" action="{% url "require.views.editMyRequire" pk %}">
@@ -92,7 +89,7 @@
      <div class="alert alert-error">{{form.scifactor.errors}}</div>
      {% endif %}
     <h4>需求描述:</h4>
-    {{ form.description }}
+    <div>{{ form.description }}</div>
     {% if form.description.errors %}
      <div class="alert alert-error">{{form.description.errors}}</div>
      {% endif %}
@@ -106,4 +103,5 @@
   </div>
   </div>
   </div>
+
   {% endblock %}

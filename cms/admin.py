@@ -1,9 +1,6 @@
-from .models import customerExample,writerExample
+from .models import friendlink
 from django.contrib import admin
-class writerExampleAdmin(admin.ModelAdmin):
+class friendlinkAdmin(admin.ModelAdmin):
     pass
-class customerExampleAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(customerExample,customerExampleAdmin)
-admin.site.register(writerExample,writerExampleAdmin)
+admin.site.register(friendlink,friendlinkAdmin)
 

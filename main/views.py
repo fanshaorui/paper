@@ -18,9 +18,8 @@ def main(request):
 	    elif request.session['userkind']=="writer":
 		return HttpResponseRedirect(reverse("writer.views.profilePage"))
 	else:
-            #wlist=cms.models.writerExample.objects.all()
-            #clist=cms.models.customerExample.objects.all()
-	    return render_to_response("index.html",RequestContext(request,dict()))
+            links=cms.models.friendlink.objects.all()
+	    return render_to_response("index.html",RequestContext(request,dict(links=links)))
 #logout page
 def logout_view(request):
 	auth.logout(request)
@@ -36,8 +35,6 @@ def loginpage(request):
 	    elif request.session['userkind']=="writer":
 		return HttpResponseRedirect(reverse("writer.views.profilePage"))
 	elif request.method=="POST":
-            wlist=cms.models.writerExample.objects.all()
-            clist=cms.models.customerExample.objects.all()
 	    form=LoginForm(request.POST)
 	    if form.is_valid():
                 logininfo=form.cleaned_data
@@ -62,19 +59,17 @@ def loginpage(request):
                                 return HttpResponseRedirect(reverse("require.views.writerRequirementMarket"))
                             except writer.models.Profile.DoesNotExist:
                                 print "not a writer also?"
-                                return render_to_response("login.html",RequestContext(request,dict(form=form,wlist=wlist,clist=clist)))
+                                return render_to_response("login.html",RequestContext(request,dict(form=form)))
 		    else:
 			message="密码错误或者用户名不存在"
-			return render_to_response("login.html",RequestContext(request,dict(form=form,message=message,wlist=wlist,clist=clist)))
+			return render_to_response("login.html",RequestContext(request,dict(form=form,message=message)))
 		except:
 		    message="密码错误或者用户名不存在"
-		    return render_to_response("login.html",RequestContext(request,dict(form=form,message=message,wlist=wlist,clist=clist)))
+		    return render_to_response("login.html",RequestContext(request,dict(form=form,message=message)))
 	    else:
-                return render_to_response("login.html",RequestContext(request,dict(form=form,wlist=wlist,clist=clist)))
+                return render_to_response("login.html",RequestContext(request,dict(form=form)))
         else:
-            wlist=cms.models.writerExample.objects.all()
-            clist=cms.models.customerExample.objects.all()
-            return render_to_response("login.html",RequestContext(request,dict(form=LoginForm(),wlist=wlist,clist=clist)))
+            return render_to_response("login.html",RequestContext(request,dict(form=LoginForm())))
 def writerindex(request):
 
 	if request.user.is_authenticated():

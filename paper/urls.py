@@ -3,8 +3,18 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 import main,require,transaction,writer,customer,captcha
 from django.views.generic import TemplateView
+from django.contrib.sitemaps import GenericSitemap
+from require.models import Requirement
 import django_messages
 admin.autodiscover()
+require_dict = {
+    'queryset': Requirement.objects.all(),
+    'date_field': 'createdtime',
+}
+sitemaps = {
+    # 'flatpages': FlatPageSitemap,
+    'require': GenericSitemap(require_dict, priority=0.6),
+}
 urlpatterns = patterns('',
 #admin.app
     url(r'^admin/', include(admin.site.urls)),
@@ -45,6 +55,10 @@ urlpatterns = patterns('',
     url(r'^writerindex/$','main.views.writerindex'),#我会写论文
     url(r'^$','main.views.main'),#我想发论文
     url(r'^captcha/', include('captcha.urls')),#验证码
+#messages
     url(r'^messages/', include('django_messages.urls')),#messages
+#sitemap
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 )
+
 

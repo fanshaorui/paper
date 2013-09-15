@@ -9,7 +9,7 @@ class Requirement(models.Model):
 	description=models.TextField(max_length=10000)
 	creator=models.ForeignKey(User)
 	createdtime=models.DateTimeField(auto_now_add=True)
-	biduser=models.ManyToManyField(User,related_name="user_2")
+	biduser=models.ManyToManyField(User,related_name="user_2",null=True,blank=True)
 	finish=models.BooleanField(default=False)
 	prize=models.IntegerField()
 	scifactor=models.IntegerField()
@@ -19,6 +19,8 @@ class Requirement(models.Model):
         category=models.ManyToManyField(Category,related_name="category_2",blank=True)
 	def __unicode__(self):
 		return self.description
+        def get_absolute_url(self):
+            return '/detail/%d/' % self.id
 
     
 

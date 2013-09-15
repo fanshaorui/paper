@@ -1,6 +1,9 @@
 {% extends "base.html"%}
 {% block title %}
 {{requirement.theme}}
+{% for category in requirement.category.all %}
+	-{{category.title}}
+{% endfor %}
 {% endblock %}
 {% block content %}
 <div class="row">

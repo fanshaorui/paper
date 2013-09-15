@@ -17,13 +17,13 @@ body{
 #aiyinsitan
 {
 height: 250px;
-	background-image: url(../../static/img/banner2.png);
+	background-image: url(../../static/img/banner2.jpg);
 	background-repeat: no-repeat;
 }
 #jinbi
 {
 height: 250px;
-	background-image: url(../../static/img/banner3.png);
+	background-image: url(../../static/img/banner3.jpg);
 	background-repeat: no-repeat;
 }
 #specialistlist
@@ -37,4 +37,8 @@ padding-left: 50px;
 #nav-left{
 	max-width: 300px;
 	padding:8px 0;
+}
+.editor{
+    width:600px;
+    height:200px;
 }
